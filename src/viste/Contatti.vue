@@ -2,21 +2,25 @@
   <div class="pagina-contatti">
     <div class="testata-pagina">
       <h1>Contatti</h1>
-      <p>Interessato a collaborare o a discutere di architetture cloud e serverless? Scrivimi pure.</p>
+      <p>Interessato a nuove opportunità professionali, collaborazioni o progetti di sviluppo software full-stack? Sentiti libero di contattarmi.</p>
     </div>
 
     <div class="riquadro-contatti">
       <div class="canale-contatto">
         <span class="label">Email</span>
-        <a href="mailto:edoardo.pippi@example.com" class="valore">edoardo.pippi@example.com</a>
+        <a href="mailto:edoardopippi00@gmail.com" class="valore">edoardopippi00@gmail.com</a>
+      </div>
+      <div class="canale-contatto">
+        <span class="label">Sede</span>
+        <span class="valore-statico">Perugia, Italia</span>
       </div>
       <div class="canale-contatto">
         <span class="label">GitHub</span>
-        <a href="https://github.com/edoardopippi" target="_blank" rel="noopener noreferrer" class="valore">github.com/edoardopippi</a>
+        <a href="https://github.com/MCR300400" target="_blank" rel="noopener noreferrer" class="valore">github.com/MCR300400</a>
       </div>
       <div class="canale-contatto">
         <span class="label">LinkedIn</span>
-        <a href="https://linkedin.com/in/edoardopippi" target="_blank" rel="noopener noreferrer" class="valore">linkedin.com/in/edoardopippi</a>
+        <a href="https://www.linkedin.com/in/edoardo-pippi" target="_blank" rel="noopener noreferrer" class="valore">linkedin.com/in/edoardo-pippi</a>
       </div>
     </div>
   </div>
@@ -32,36 +36,27 @@
   font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 0.75rem;
+  letter-spacing: -0.015em;
+  color: var(--testo-primario);
 }
 
 .testata-pagina p {
-  color: #64748b;
+  color: var(--testo-secondario);
   font-size: 1.05rem;
-  line-height: 1.5;
+  line-height: 1.6;
   margin-bottom: 2rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  .testata-pagina p {
-    color: #94a3b8;
-  }
 }
 
 .riquadro-contatti {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-superficie);
+  border: 1px solid var(--bordo-sottile);
   border-radius: 12px;
   padding: 1.75rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  .riquadro-contatti {
-    background: #1e293b;
-    border-color: #334155;
-  }
+  box-shadow: var(--ombra-scheda);
+  transition: background-color 0.25s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .canale-contatto {
@@ -71,21 +66,29 @@
 }
 
 .label {
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 650;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #94a3b8;
+  letter-spacing: 0.06em;
+  color: var(--testo-terziario);
 }
 
 .valore {
   font-size: 1.05rem;
-  font-weight: 500;
-  color: #2563eb;
+  font-weight: 550;
+  color: var(--accento);
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 .valore:hover {
+  color: var(--accento-hover);
   text-decoration: underline;
+}
+
+.valore-statico {
+  font-size: 1.05rem;
+  font-weight: 550;
+  color: var(--testo-primario);
 }
 </style>

@@ -13,11 +13,11 @@
     </section>
 
     <section>
-      <h2>Zero Cookie, Zero Storage Locale</h2>
+      <h2>Zero Cookie, Preferenze Tecniche Essenziali</h2>
       <p>
-        Questo sito web <strong>non utilizza cookie</strong> di tracciamento, né memorizza identificatori persistenti
-        tramite <code>localStorage</code> o <code>sessionStorage</code>. Per questo motivo non è necessario alcun
-        banner o popup di consenso preventivo ai sensi delle linee guida GDPR ed ePrivacy.
+        Questo sito web <strong>non utilizza cookie</strong> di profilazione o tracciamento.
+        L'unica informazione salvata localmente nel browser (tramite <code>localStorage</code>) è strettamente tecnica ed
+        esente da obbligo di consenso: serve unicamente a ricordare la preferenza sul tema visivo scelto (chiaro o scuro).
       </p>
     </section>
 
@@ -57,7 +57,7 @@
       <p>
         Per qualsiasi informazione o chiarimento sul trattamento dei dati, puoi contattare
         <strong>Edoardo Pippi</strong> all'indirizzo email
-        <a href="mailto:edoardo.pippi@example.com">edoardo.pippi@example.com</a>.
+        <a href="mailto:edoardopippi00@gmail.com">edoardopippi00@gmail.com</a>.
       </p>
     </section>
   </div>
@@ -67,58 +67,42 @@
 .pagina-privacy {
   padding: 2.5rem 0;
   max-width: 720px;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
 h1 {
   font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
+  color: var(--testo-primario);
+  letter-spacing: -0.015em;
 }
 
 .data-aggiornamento {
-  color: #94a3b8;
+  color: var(--testo-terziario);
   font-size: 0.85rem;
   margin-bottom: 2rem;
 }
 
 section {
-  margin-bottom: 2rem;
+  margin-bottom: 2.25rem;
 }
 
 h2 {
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 0.6rem;
-  color: #0f172a;
-}
-
-@media (prefers-color-scheme: dark) {
-  h2 {
-    color: #f1f5f9;
-  }
+  color: var(--testo-primario);
 }
 
 p {
-  color: #475569;
+  color: var(--testo-secondario);
   margin-bottom: 0.75rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  p {
-    color: #94a3b8;
-  }
 }
 
 ul {
   padding-left: 1.25rem;
-  color: #475569;
-}
-
-@media (prefers-color-scheme: dark) {
-  ul {
-    color: #94a3b8;
-  }
+  color: var(--testo-secondario);
 }
 
 li {
@@ -126,25 +110,23 @@ li {
 }
 
 code {
-  background: #f1f5f9;
-  padding: 0.15rem 0.35rem;
+  background: var(--bg-superficie-elevata);
+  color: var(--accento);
+  padding: 0.15rem 0.38rem;
   border-radius: 4px;
+  border: 1px solid var(--bordo-sottile);
   font-size: 0.88em;
-}
-
-@media (prefers-color-scheme: dark) {
-  code {
-    background: #334155;
-    color: #e2e8f0;
-  }
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 a {
-  color: #2563eb;
+  color: var(--accento);
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 a:hover {
+  color: var(--accento-hover);
   text-decoration: underline;
 }
 </style>

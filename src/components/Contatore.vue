@@ -40,14 +40,15 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.2);
-  color: #2563eb;
-  padding: 0.25rem 0.65rem;
+  background: var(--accento-sfondo);
+  border: 1px solid var(--accento-bordo);
+  color: var(--accento-testo);
+  padding: 0.28rem 0.65rem;
   border-radius: 9999px;
   font-size: 0.78rem;
-  font-weight: 500;
+  font-weight: 550;
   letter-spacing: 0.01em;
+  transition: all 0.2s ease;
 }
 
 .pulsante-dot {
@@ -64,10 +65,16 @@ onMounted(() => {
     box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
   }
   70% {
-    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 5px rgba(16, 185, 129, 0);
   }
   100% {
     box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+@media (max-width: 520px) {
+  .badge-contatore {
+    display: none;
   }
 }
 </style>

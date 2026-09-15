@@ -14,11 +14,11 @@ import Intestazione from './components/Intestazione.vue'
     <footer class="footer">
       <div class="contenitore footer-interno">
         <p class="copyright">
-          &copy; {{ new Date().getFullYear() }} Edoardo Pippi. Realizzato con Vue 3 & Cloudflare.
+          &copy; {{ new Date().getFullYear() }} Edoardo Pippi — Full-Stack Software Developer
         </p>
         <div class="link-footer">
           <RouterLink to="/privacy">Privacy & Cookie</RouterLink>
-          <a href="https://github.com/edoardopippi" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://github.com/MCR300400" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
     </footer>
@@ -35,17 +35,12 @@ import Intestazione from './components/Intestazione.vue'
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: var(--bg-primario);
+  color: var(--testo-primario);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #0f172a;
-    color: #f8fafc;
-  }
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.25s ease, color 0.2s ease;
 }
 
 .contenitore {
@@ -65,18 +60,12 @@ body {
 }
 
 .footer {
-  border-top: 1px solid #e2e8f0;
-  padding: 2rem 0;
+  border-top: 1px solid var(--bordo-sottile);
+  padding: 2.25rem 0;
   margin-top: 4rem;
   font-size: 0.88rem;
-  color: #64748b;
-}
-
-@media (prefers-color-scheme: dark) {
-  .footer {
-    border-top-color: #1e293b;
-    color: #94a3b8;
-  }
+  color: var(--testo-secondario);
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .footer-interno {
@@ -99,6 +88,6 @@ body {
 }
 
 .link-footer a:hover {
-  color: #2563eb;
+  color: var(--accento);
 }
 </style>
