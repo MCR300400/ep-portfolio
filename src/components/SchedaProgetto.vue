@@ -21,7 +21,28 @@ defineProps({
       <a v-if="linkGitHub" :href="linkGitHub" target="_blank" rel="noopener noreferrer" class="pulsante pulsante-secondario">
         GitHub
       </a>
-      <a v-if="linkLive" :href="linkLive" target="_blank" rel="noopener noreferrer" class="pulsante pulsante-primario">
+      <a
+        v-if="linkLive"
+        :href="linkLive"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="pulsante pulsante-primario"
+        :title="'Apri ' + linkLive"
+      >
+        <svg
+          v-if="linkLive.includes('pages.dev') || linkLive.includes('workers.dev')"
+          class="icona-cf"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+        </svg>
         Visita &rarr;
       </a>
     </div>
@@ -119,5 +140,10 @@ defineProps({
   background: var(--bg-superficie-elevata);
   color: var(--testo-primario);
   border-color: var(--bordo-forte);
+}
+
+.icona-cf {
+  margin-right: 0.35rem;
+  flex-shrink: 0;
 }
 </style>

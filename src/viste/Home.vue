@@ -4,25 +4,46 @@ import SchedaProgetto from '../components/SchedaProgetto.vue'
 
 const progettiInEvidenza = [
   {
-    titolo: 'Cloudflare Analytics Engine',
-    descrizione: 'Backend serverless ad alte prestazioni con Cloudflare Workers e database relazionale distribuito D1, con rollup cron notturno e zero cookie.',
-    tag: ['Cloudflare Workers', 'D1 SQL', 'Cron Triggers', 'Web Crypto'],
+    titolo: 'ep-board — Lavagna Collaborativa Real-Time',
+    descrizione: 'Lavagna infinita collaborativa a 60 FPS per architetture e diagrammi. Cursori multiplayer live, touch gestures, esportazione Retina PNG/SVG e sincronizzazione stateful su Cloudflare Durable Objects (SQLite).',
+    tag: ['Cloudflare Pages', 'Durable Objects', 'SQLite', 'WebSockets', 'Vue 3'],
+    linkGitHub: 'https://github.com/MCR300400/ep-board',
+    linkLive: 'https://ep-board.pages.dev'
+  },
+  {
+    titolo: 'ep-drop — Trasferimento P2P & Appunti',
+    descrizione: 'Condivisione istantanea e crittografata di file e appunti tra dispositivi browser-to-browser. Zero server storage, stanze con QR code e segnalazione WebRTC su Cloudflare Workers.',
+    tag: ['Cloudflare Pages', 'WebRTC DataChannel', 'WebSockets', 'P2P Transfer'],
+    linkGitHub: 'https://github.com/MCR300400/ep-drop',
+    linkLive: 'https://ep-drop.pages.dev'
+  },
+  {
+    titolo: 'ep-router — Simulatore & Game di Rete Edge',
+    descrizione: 'Puzzle game strategico e simulatore a 60 FPS: instradamento pacchetti tra PoP globali, gestione buffer bloat, edge cache KV e mitigazione attacchi DDoS SYN Flood con Cloudflare WAF.',
+    tag: ['Cloudflare Pages', 'Canvas 2D', 'Web Audio API', 'Traffic Engineering'],
+    linkGitHub: 'https://github.com/MCR300400/ep-router',
+    linkLive: 'https://ep-router.pages.dev'
+  },
+  {
+    titolo: 'ep-algorithms — Selettore Algoritmico',
+    descrizione: 'Piattaforma di analisi e simulazione grafica live degli algoritmi informatici fondamentali con wizard decisionale guidato e codice sorgente in 6 linguaggi (Python, Java, TypeScript, C, ecc.).',
+    tag: ['Cloudflare Pages', 'Vue 3', 'Vite', 'Algorithms', 'Simulator'],
+    linkGitHub: 'https://github.com/MCR300400/ep-algorithms',
+    linkLive: 'https://ep-algorithms.pages.dev'
+  },
+  {
+    titolo: 'ep-analytics — Backend Serverless Analytics',
+    descrizione: 'Backend serverless per raccolta metriche privacy-first e API di gestione multi-sito con database D1 SQLite globale, Web Crypto hashing SHA-256 e cron rollup notturno. Zero cookie.',
+    tag: ['Cloudflare Workers', 'D1 SQLite', 'Web Crypto', 'Cron Triggers'],
     linkGitHub: 'https://github.com/MCR300400/ep-analytics',
-    linkLive: '/progetti'
+    linkLive: 'https://ep-analytics.edoardopippi00.workers.dev/t.js'
   },
   {
-    titolo: 'TikTok Stories Automation Pipeline',
-    descrizione: 'Sistema Python automatizzato (Produttore-Consumatore): input da Telegram, LLM Groq Cloud, Edge-TTS, montaggio video FFmpeg 9:16 e pubblicazione programmata TikTok.',
-    tag: ['Python', 'Telegram Bot', 'Groq AI', 'FFmpeg', 'Edge-TTS'],
-    linkGitHub: 'https://github.com/MCR300400/tiktok-stories-automation',
-    linkLive: '/progetti'
-  },
-  {
-    titolo: 'Gestionale Analytics Multi-Sito',
-    descrizione: 'Dashboard privata in Vue 3 protetta da Cloudflare Access, monitoraggio trend con sparkline SVG native senza librerie esterne.',
-    tag: ['Vue 3', 'Vite', 'Cloudflare Access', 'Zero Trust'],
+    titolo: 'ep-dashboard — Monitoraggio Zero Trust',
+    descrizione: 'Pannello analytics privato multi-sito protetto da Cloudflare Access (Zero Trust), con sparkline SVG native senza librerie esterne e auto-refresh in tempo reale a 60s.',
+    tag: ['Cloudflare Pages', 'Cloudflare Access', 'Zero Trust', 'SVG Sparklines'],
     linkGitHub: 'https://github.com/MCR300400/ep-dashboard',
-    linkLive: '/progetti'
+    linkLive: 'https://ep-dashboard.pages.dev'
   }
 ]
 
