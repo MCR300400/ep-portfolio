@@ -112,10 +112,10 @@ export const listaProgetti = [
       en: 'Gaia D\'Alessio — Editorial Academic Portfolio'
     },
     descrizione: {
-      it: 'Sito web portfolio accademico e professionale curato con direzione artistica editoriale (Anti-AI Look), 100% responsive e ospitato su Cloudflare Pages. Tipografia classica con Cormorant Garamond, palette sobria carta/fumo antracite, standard di certificazione linguistica QCER e sezioni strutturate per pubblicazioni e percorsi accademici.',
-      en: 'Curated academic and professional portfolio with bespoke editorial art direction (Anti-AI Aesthetic), 100% responsive and hosted on Cloudflare Pages. Classic typography with Cormorant Garamond, muted paper & warm charcoal palette, and structured sections for academic research and publications.'
+      it: 'Sito web portfolio accademico e professionale curato con direzione artistica editoriale, 100% responsive e ospitato su Cloudflare Pages. Tipografia classica con Cormorant Garamond, palette sobria carta/fumo antracite, standard di certificazione linguistica QCER e sezioni strutturate per pubblicazioni e percorsi accademici.',
+      en: 'Curated academic and professional portfolio with bespoke editorial art direction, 100% responsive and hosted on Cloudflare Pages. Classic typography with Cormorant Garamond, muted paper & warm charcoal palette, and structured sections for academic research and publications.'
     },
-    tag: ['Cloudflare Pages', 'HTML5 / CSS3', 'Editorial Design', 'Anti-AI Look', 'Responsive'],
+    tag: ['Cloudflare Pages', 'Vue 3', 'Tailwind CSS', 'Editorial Design', 'Responsive'],
     linkGitHub: 'https://github.com/MCR300400/gdalessio-portfolio',
     linkLive: 'https://gdalessio-portfolio.pages.dev'
   },
