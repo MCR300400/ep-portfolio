@@ -1,5 +1,11 @@
+<script setup>
+import { useLingua } from '../composables/useLingua'
+
+const { isItalian } = useLingua()
+</script>
+
 <template>
-  <div class="pagina-privacy">
+  <div class="pagina-privacy" v-if="isItalian">
     <h1>Informativa sulla Privacy & Analytics</h1>
     <p class="data-aggiornamento">Ultimo aggiornamento: Settembre 2026</p>
 
@@ -17,7 +23,7 @@
       <p>
         Questo sito web <strong>non utilizza cookie</strong> di profilazione o tracciamento.
         L'unica informazione salvata localmente nel browser (tramite <code>localStorage</code>) è strettamente tecnica ed
-        esente da obbligo di consenso: serve unicamente a ricordare la preferenza sul tema visivo scelto (chiaro o scuro).
+        esente da obbligo di consenso: serve unicamente a ricordare la preferenza sul tema visivo scelto (chiaro o scuro) e la lingua selezionata.
       </p>
     </section>
 
@@ -32,7 +38,7 @@
         </li>
         <li>
           L'identificatore del visitatore è generato calcolando un hash crittografico SHA-256 combinando
-          l'indirizzo IP, il browser User-Agent, un segreto lato server (SALT) e la data corrente.
+          l'indirizzo IP, il browser User-Agent, un segreto lato server (SALT) e la data UTC corrente.
         </li>
         <li>
           L'hash ruota e si resetta automaticamente ogni 24 ore: non è possibile correlare le visite dello stesso
@@ -57,6 +63,69 @@
       <p>
         Per qualsiasi informazione o chiarimento sul trattamento dei dati, puoi contattare
         <strong>Edoardo Pippi</strong> all'indirizzo email
+        <a href="mailto:edoardopippi00@gmail.com">edoardopippi00@gmail.com</a>.
+      </p>
+    </section>
+  </div>
+
+  <div class="pagina-privacy" v-else>
+    <h1>Privacy Policy & Analytics Notice</h1>
+    <p class="data-aggiornamento">Last updated: September 2026</p>
+
+    <section>
+      <h2>Privacy-First Philosophy</h2>
+      <p>
+        This website is built adhering to strict <em>privacy by design</em> principles.
+        We only collect anonymous aggregate metrics necessary to monitor technical performance
+        and gauge overall visits, without any user profiling or third-party data sharing.
+      </p>
+    </section>
+
+    <section>
+      <h2>Zero Cookies, Essential Technical Storage Only</h2>
+      <p>
+        This website <strong>does not use cookies</strong> for profiling or tracking.
+        The only client-side storage used (via <code>localStorage</code>) is strictly technical and
+        consent-exempt: it simply remembers your preferred visual theme (light or dark) and language preference.
+      </p>
+    </section>
+
+    <section>
+      <h2>How Visitor Anonymization Works</h2>
+      <p>
+        Visit metrics are processed by a custom serverless backend (Cloudflare Worker):
+      </p>
+      <ul>
+        <li>
+          <strong>No plain-text IP addresses</strong> are ever stored in the database.
+        </li>
+        <li>
+          Visitor IDs are generated via a SHA-256 cryptographic hash combining the client IP address,
+          browser User-Agent, a server-side secret (SALT), and the current UTC date.
+        </li>
+        <li>
+          The hash automatically rotates and resets every 24 hours: it is impossible to link visits from
+          the same user across different days or reconstruct an individual browsing history over time.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Data Collected</h2>
+      <p>The only information logged consists of:</p>
+      <ul>
+        <li>Requested page path (URL path)</li>
+        <li>Referrer (originating website, if present)</li>
+        <li>Estimated time spent on the page</li>
+        <li>Approximate country and city resolved at the Cloudflare edge (no GPS tracking)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Data Controller</h2>
+      <p>
+        For any inquiries or information regarding data handling, feel free to contact
+        <strong>Edoardo Pippi</strong> at
         <a href="mailto:edoardopippi00@gmail.com">edoardopippi00@gmail.com</a>.
       </p>
     </section>

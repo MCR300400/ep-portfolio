@@ -1,8 +1,19 @@
+<script setup>
+import { useLingua } from '../composables/useLingua'
+
+const { isItalian } = useLingua()
+</script>
+
 <template>
   <div class="pagina-contatti">
     <div class="testata-pagina">
-      <h1>Contatti</h1>
-      <p>Interessato a nuove opportunità professionali, collaborazioni o progetti di sviluppo software full-stack? Sentiti libero di contattarmi.</p>
+      <h1>{{ isItalian ? 'Contatti' : 'Contact' }}</h1>
+      <p>
+        {{ isItalian
+          ? 'Interessato a nuove opportunità professionali, collaborazioni o progetti di sviluppo software full-stack? Sentiti libero di contattarmi.'
+          : 'Interested in new professional opportunities, collaborations, or full-stack software development projects? Feel free to reach out.'
+        }}
+      </p>
     </div>
 
     <div class="riquadro-contatti">
@@ -11,8 +22,8 @@
         <a href="mailto:edoardopippi00@gmail.com" class="valore">edoardopippi00@gmail.com</a>
       </div>
       <div class="canale-contatto">
-        <span class="label">Sede</span>
-        <span class="valore-statico">Perugia, Italia</span>
+        <span class="label">{{ isItalian ? 'Sede' : 'Location' }}</span>
+        <span class="valore-statico">{{ isItalian ? 'Perugia, Italia' : 'Perugia, Italy' }}</span>
       </div>
       <div class="canale-contatto">
         <span class="label">GitHub</span>

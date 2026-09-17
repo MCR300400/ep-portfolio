@@ -1,105 +1,82 @@
 <script setup>
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import SchedaProgetto from '../components/SchedaProgetto.vue'
+import { listaProgetti } from '../dati/progetti'
+import { useLingua } from '../composables/useLingua'
 
-const progettiInEvidenza = [
-  {
-    titolo: 'ep-board — Lavagna Collaborativa Real-Time',
-    descrizione: 'Lavagna infinita collaborativa a 60 FPS per architetture e diagrammi. Cursori multiplayer live, touch gestures, esportazione Retina PNG/SVG e sincronizzazione stateful su Cloudflare Durable Objects (SQLite).',
-    tag: ['Cloudflare Pages', 'Durable Objects', 'SQLite', 'WebSockets', 'Vue 3'],
-    linkGitHub: 'https://github.com/MCR300400/ep-board',
-    linkLive: 'https://ep-board.pages.dev'
-  },
-  {
-    titolo: 'ep-drop — Trasferimento P2P & Appunti',
-    descrizione: 'Condivisione istantanea e crittografata di file e appunti tra dispositivi browser-to-browser. Zero server storage, stanze con QR code e segnalazione WebRTC su Cloudflare Workers.',
-    tag: ['Cloudflare Pages', 'WebRTC DataChannel', 'WebSockets', 'P2P Transfer'],
-    linkGitHub: 'https://github.com/MCR300400/ep-drop',
-    linkLive: 'https://ep-drop.pages.dev'
-  },
-  {
-    titolo: 'ep-router — Simulatore & Game di Rete Edge',
-    descrizione: 'Puzzle game strategico e simulatore a 60 FPS: instradamento pacchetti tra PoP globali, gestione buffer bloat, edge cache KV e mitigazione attacchi DDoS SYN Flood con Cloudflare WAF.',
-    tag: ['Cloudflare Pages', 'Canvas 2D', 'Web Audio API', 'Traffic Engineering'],
-    linkGitHub: 'https://github.com/MCR300400/ep-router',
-    linkLive: 'https://ep-router.pages.dev'
-  },
-  {
-    titolo: 'ep-algorithms — Selettore Algoritmico',
-    descrizione: 'Piattaforma di analisi e simulazione grafica live degli algoritmi informatici fondamentali con wizard decisionale guidato e codice sorgente in 6 linguaggi (Python, Java, TypeScript, C, ecc.).',
-    tag: ['Cloudflare Pages', 'Vue 3', 'Vite', 'Algorithms', 'Simulator'],
-    linkGitHub: 'https://github.com/MCR300400/ep-algorithms',
-    linkLive: 'https://ep-algorithms.pages.dev'
-  },
-  {
-    titolo: 'ep-analytics — Backend Serverless Analytics',
-    descrizione: 'Backend serverless per raccolta metriche privacy-first e API di gestione multi-sito con database D1 SQLite globale, Web Crypto hashing SHA-256 e cron rollup notturno. Zero cookie.',
-    tag: ['Cloudflare Workers', 'D1 SQLite', 'Web Crypto', 'Cron Triggers'],
-    linkGitHub: 'https://github.com/MCR300400/ep-analytics',
-    linkLive: 'https://ep-analytics.edoardopippi00.workers.dev/t.js'
-  },
-  {
-    titolo: 'ep-dashboard — Monitoraggio Zero Trust',
-    descrizione: 'Pannello analytics privato multi-sito protetto da Cloudflare Access (Zero Trust), con sparkline SVG native senza librerie esterne e auto-refresh in tempo reale a 60s.',
-    tag: ['Cloudflare Pages', 'Cloudflare Access', 'Zero Trust', 'SVG Sparklines'],
-    linkGitHub: 'https://github.com/MCR300400/ep-dashboard',
-    linkLive: 'https://ep-dashboard.pages.dev'
-  }
-]
+const { isItalian, t } = useLingua()
+
+const progettiInEvidenza = computed(() => listaProgetti.filter(p => p.inEvidenza))
 
 const gruppiCompetenze = [
   {
-    categoria: 'Backend & Architettura',
+    categoria: { it: 'Backend & Architettura', en: 'Backend & Architecture' },
     competenze: ['Java', 'Spring Boot', 'Oracle', 'Python', 'RESTful API', 'OOP', 'SQL & SQLite', 'C / C#']
   },
   {
-    categoria: 'Frontend & Mobile',
+    categoria: { it: 'Frontend & Mobile', en: 'Frontend & Mobile' },
     competenze: ['Vue.js 3', 'Vite', 'Flutter', 'Dart', 'TypeScript', 'JavaScript', 'HTML5 / CSS3']
   },
   {
-    categoria: 'Cloud, Tooling & Metodologie',
+    categoria: { it: 'Cloud, Tooling & Metodologie', en: 'Cloud, Tooling & Methodologies' },
     competenze: ['Cloudflare (Workers, D1, Pages)', 'Git', 'Agile / Scrum', 'Problem Solving', 'Debugging']
   }
 ]
 
 const esperienze = [
   {
-    ruolo: 'Full-Stack Developer (Apprendistato)',
+    ruolo: { it: 'Full-Stack Developer (Apprendistato)', en: 'Full-Stack Developer (Apprenticeship)' },
     azienda: 'Park It',
-    luogo: 'Perugia, Italia',
-    periodo: 'Dicembre 2024 – Presente',
-    descrizione: 'Sviluppo, restyling e manutenzione in autonomia di siti web e applicazioni complesse. Progettazione e implementazione end-to-end di nuove funzionalità frontend e backend con integrazione di API RESTful e ottimizzazione delle performance.'
+    luogo: { it: 'Perugia, Italia', en: 'Perugia, Italy' },
+    periodo: { it: 'Dicembre 2024 – Presente', en: 'December 2024 – Present' },
+    descrizione: {
+      it: 'Sviluppo, restyling e manutenzione in autonomia di siti web e applicazioni complesse. Progettazione e implementazione end-to-end di nuove funzionalità frontend e backend con integrazione di API RESTful e ottimizzazione delle performance.',
+      en: 'Autonomous development, redesign, and maintenance of complex websites and web applications. End-to-end design and implementation of frontend and backend features with RESTful API integration and performance optimization.'
+    }
   },
   {
-    ruolo: 'Tirocinio Full-Stack Developer',
+    ruolo: { it: 'Tirocinio Full-Stack Developer', en: 'Full-Stack Developer Intern' },
     azienda: 'Park It',
-    luogo: 'Perugia, Italia',
-    periodo: 'Giugno 2024 – Dicembre 2024',
-    descrizione: 'Supporto allo sviluppo e alla manutenzione di applicativi e portali aziendali all’interno del team. Attività di debugging, scrittura di codice robusto e risoluzione di ticket tecnici su componenti esistenti.'
+    luogo: { it: 'Perugia, Italia', en: 'Perugia, Italy' },
+    periodo: { it: 'Giugno 2024 – Dicembre 2024', en: 'June 2024 – December 2024' },
+    descrizione: {
+      it: 'Supporto allo sviluppo e alla manutenzione di applicativi e portali aziendali all’interno del team. Attività di debugging, scrittura di codice robusto e risoluzione di ticket tecnici su componenti esistenti.',
+      en: 'Supported development and maintenance of company web applications and portals within the engineering team. Bug fixing, writing robust code, and resolving technical tickets on existing systems.'
+    }
   },
   {
-    ruolo: 'Sviluppatore Web & Mobile (Tirocinio Universitario)',
+    ruolo: { it: 'Sviluppatore Web & Mobile (Tirocinio Universitario)', en: 'Web & Mobile Developer (University Intern)' },
     azienda: 'Levita Srls',
-    luogo: 'Perugia, Italia',
-    periodo: 'Ottobre 2023 – Novembre 2023',
-    descrizione: 'Attività di programmazione mobile per applicazioni aziendali. Modifica e manutenzione di siti web aziendali con gestione e caricamento dei contenuti.'
+    luogo: { it: 'Perugia, Italia', en: 'Perugia, Italy' },
+    periodo: { it: 'Ottobre 2023 – Novembre 2023', en: 'October 2023 – November 2023' },
+    descrizione: {
+      it: 'Attività di programmazione mobile per applicazioni aziendali. Modifica e manutenzione di siti web aziendali con gestione e caricamento dei contenuti.',
+      en: 'Mobile app development for business software. Modification and maintenance of company web properties with content updates.'
+    }
   }
 ]
 
 const formazione = [
   {
-    titolo: 'Laurea in Informatica',
-    istituto: 'Università degli Studi di Perugia',
-    anno: 'Aprile 2026',
-    luogo: 'Perugia, Italia',
-    note: 'Tesi sperimentale svolta in collaborazione con Park It: "IoT Parking Management per operatori".'
+    titolo: { it: 'Laurea in Informatica', en: 'Bachelor\'s Degree in Computer Science' },
+    istituto: { it: 'Università degli Studi di Perugia', en: 'University of Perugia' },
+    anno: { it: 'Aprile 2026', en: 'April 2026' },
+    luogo: { it: 'Perugia, Italia', en: 'Perugia, Italy' },
+    note: {
+      it: 'Tesi sperimentale svolta in collaborazione con Park It: "IoT Parking Management per operatori".',
+      en: 'Experimental thesis in partnership with Park It: "IoT Parking Management for operators".'
+    }
   },
   {
-    titolo: 'Diploma di Liceo Scientifico',
-    istituto: 'Liceo Scientifico "Galeazzo Alessi"',
-    anno: 'Perugia, Italia',
-    luogo: 'Perugia, Italia',
-    note: 'Solida formazione logico-matematica e propensione scientifica al problem solving.'
+    titolo: { it: 'Diploma di Liceo Scientifico', en: 'Scientific High School Diploma' },
+    istituto: { it: 'Liceo Scientifico "Galeazzo Alessi"', en: 'Scientific High School "Galeazzo Alessi"' },
+    anno: { it: 'Perugia, Italia', en: 'Perugia, Italy' },
+    luogo: { it: 'Perugia, Italia', en: 'Perugia, Italy' },
+    note: {
+      it: 'Solida formazione logico-matematica e propensione scientifica al problem solving.',
+      en: 'Solid foundation in logic, mathematics, and scientific problem solving.'
+    }
   }
 ]
 </script>
@@ -110,31 +87,45 @@ const formazione = [
     <section class="sezione-hero">
       <div class="badge-disponibile">
         <span class="dot"></span>
-        Full-Stack Software Developer • Perugia, Italia
+        {{ isItalian ? 'Full-Stack Software Developer • Perugia, Italia' : 'Full-Stack Software Developer • Perugia, Italy' }}
       </div>
       <h1 class="titolo-hero">
-        Progetto e sviluppo applicazioni web, mobile e architetture scalabili.
+        {{ isItalian
+          ? 'Progetto e sviluppo applicazioni web, mobile e architetture scalabili.'
+          : 'Designing and building web, mobile apps and scalable architectures.'
+        }}
       </h1>
-      <p class="sottotitolo-hero">
+      <p class="sottotitolo-hero" v-if="isItalian">
         Ciao, sono <strong>Edoardo Pippi</strong>. Sviluppatore con oltre 2 anni di esperienza professionale
         nella realizzazione di soluzioni software end-to-end. Specializzato in <strong>Java</strong>,
         <strong>Spring Boot</strong>, <strong>Vue.js 3</strong> e <strong>Flutter</strong>, con approccio Agile e passione per l'ingegneria del software pulita ed efficiente.
       </p>
+      <p class="sottotitolo-hero" v-else>
+        Hi, I am <strong>Edoardo Pippi</strong>. Software developer with over 2 years of professional experience
+        building end-to-end software solutions. Specialized in <strong>Java</strong>,
+        <strong>Spring Boot</strong>, <strong>Vue.js 3</strong>, and <strong>Flutter</strong>, with an Agile mindset and a passion for clean, high-performance software engineering.
+      </p>
       <div class="azioni-hero">
-        <RouterLink to="/progetti" class="pulsante-hero primario">Esplora i progetti</RouterLink>
-        <RouterLink to="/contatti" class="pulsante-hero secondario">Contattami</RouterLink>
+        <RouterLink to="/progetti" class="pulsante-hero primario">
+          {{ isItalian ? 'Esplora i progetti' : 'Explore projects' }}
+        </RouterLink>
+        <RouterLink to="/contatti" class="pulsante-hero secondario">
+          {{ isItalian ? 'Contattami' : 'Get in touch' }}
+        </RouterLink>
       </div>
     </section>
 
     <!-- Sezione Competenze Tecniche -->
     <section class="sezione-blocco">
       <div class="sezione-testata">
-        <h2>Competenze Tecniche</h2>
-        <span class="sezione-sottotitolo">Stack tecnologico consolidato sul campo</span>
+        <h2>{{ isItalian ? 'Competenze Tecniche' : 'Technical Skills' }}</h2>
+        <span class="sezione-sottotitolo">
+          {{ isItalian ? 'Stack tecnologico consolidato sul campo' : 'Field-tested technology stack' }}
+        </span>
       </div>
       <div class="griglia-competenze">
-        <div v-for="g in gruppiCompetenze" :key="g.categoria" class="scheda-competenza">
-          <h3 class="titolo-competenza">{{ g.categoria }}</h3>
+        <div v-for="g in gruppiCompetenze" :key="t(g.categoria)" class="scheda-competenza">
+          <h3 class="titolo-competenza">{{ t(g.categoria) }}</h3>
           <div class="lista-badge">
             <span v-for="c in g.competenze" :key="c" class="badge-tech">{{ c }}</span>
           </div>
@@ -145,13 +136,15 @@ const formazione = [
     <!-- Sezione Progetti in evidenza -->
     <section class="sezione-blocco">
       <div class="sezione-testata">
-        <h2>Progetti in evidenza</h2>
-        <RouterLink to="/progetti" class="link-tutti">Vedi tutti &rarr;</RouterLink>
+        <h2>{{ isItalian ? 'Progetti in evidenza' : 'Featured Projects' }}</h2>
+        <RouterLink to="/progetti" class="link-tutti">
+          {{ isItalian ? 'Vedi tutti →' : 'View all →' }}
+        </RouterLink>
       </div>
       <div class="griglia-progetti">
         <SchedaProgetto
           v-for="p in progettiInEvidenza"
-          :key="p.titolo"
+          :key="p.id"
           :titolo="p.titolo"
           :descrizione="p.descrizione"
           :tag="p.tag"
@@ -164,23 +157,25 @@ const formazione = [
     <!-- Sezione Esperienza Lavorativa & Formazione -->
     <section class="sezione-blocco">
       <div class="sezione-testata">
-        <h2>Esperienza Professionale</h2>
-        <span class="sezione-sottotitolo">Percorso e ruoli ricoperti</span>
+        <h2>{{ isItalian ? 'Esperienza Professionale' : 'Work Experience' }}</h2>
+        <span class="sezione-sottotitolo">
+          {{ isItalian ? 'Percorso e ruoli ricoperti' : 'Career path and roles' }}
+        </span>
       </div>
       <div class="lista-esperienze">
-        <article v-for="esp in esperienze" :key="esp.ruolo + esp.periodo" class="scheda-esperienza">
+        <article v-for="esp in esperienze" :key="t(esp.ruolo) + t(esp.periodo)" class="scheda-esperienza">
           <div class="esp-header">
             <div>
-              <h3 class="esp-ruolo">{{ esp.ruolo }}</h3>
+              <h3 class="esp-ruolo">{{ t(esp.ruolo) }}</h3>
               <div class="esp-azienda">
                 <span class="nome-azienda">{{ esp.azienda }}</span>
                 <span class="separatore">•</span>
-                <span class="luogo-azienda">{{ esp.luogo }}</span>
+                <span class="luogo-azienda">{{ t(esp.luogo) }}</span>
               </div>
             </div>
-            <span class="esp-periodo">{{ esp.periodo }}</span>
+            <span class="esp-periodo">{{ t(esp.periodo) }}</span>
           </div>
-          <p class="esp-descrizione">{{ esp.descrizione }}</p>
+          <p class="esp-descrizione">{{ t(esp.descrizione) }}</p>
         </article>
       </div>
     </section>
@@ -188,17 +183,19 @@ const formazione = [
     <!-- Sezione Formazione & Istruzione -->
     <section class="sezione-blocco">
       <div class="sezione-testata">
-        <h2>Istruzione & Formazione</h2>
-        <span class="sezione-sottotitolo">Percorso accademico</span>
+        <h2>{{ isItalian ? 'Istruzione & Formazione' : 'Education & Qualifications' }}</h2>
+        <span class="sezione-sottotitolo">
+          {{ isItalian ? 'Percorso accademico' : 'Academic background' }}
+        </span>
       </div>
       <div class="griglia-formazione">
-        <article v-for="f in formazione" :key="f.titolo" class="scheda-formazione">
+        <article v-for="f in formazione" :key="t(f.titolo)" class="scheda-formazione">
           <div class="formazione-top">
-            <h3 class="formazione-titolo">{{ f.titolo }}</h3>
-            <span class="formazione-anno">{{ f.anno }}</span>
+            <h3 class="formazione-titolo">{{ t(f.titolo) }}</h3>
+            <span class="formazione-anno">{{ t(f.anno) }}</span>
           </div>
-          <div class="formazione-istituto">{{ f.istituto }}</div>
-          <p class="formazione-note">{{ f.note }}</p>
+          <div class="formazione-istituto">{{ t(f.istituto) }}</div>
+          <p class="formazione-note">{{ t(f.note) }}</p>
         </article>
       </div>
     </section>

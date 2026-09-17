@@ -3,8 +3,10 @@ import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import Contatore from './Contatore.vue'
 import { useTema } from '../composables/useTema'
+import { useLingua } from '../composables/useLingua'
 
 const { tema, toggleTema } = useTema()
+const { lingua, isItalian, isEnglish, setLingua, t } = useLingua()
 const router = useRouter()
 
 const menuAperto = ref(false)
@@ -64,15 +66,38 @@ onUnmounted(() => {
 
       <!-- Navigazione Desktop (Visibile SOLO su desktop / schermi ampi) -->
       <nav class="nav-desktop">
-        <RouterLink to="/" class="nav-link">Home</RouterLink>
-        <RouterLink to="/progetti" class="nav-link">Progetti</RouterLink>
-        <RouterLink to="/contatti" class="nav-link">Contatti</RouterLink>
-        <RouterLink to="/privacy" class="nav-link">Privacy</RouterLink>
+        <RouterLink to="/" class="nav-link">{{ t('nav.home') }}</RouterLink>
+        <RouterLink to="/progetti" class="nav-link">{{ t('nav.progetti') }}</RouterLink>
+        <RouterLink to="/contatti" class="nav-link">{{ t('nav.contatti') }}</RouterLink>
+        <RouterLink to="/privacy" class="nav-link">{{ t('nav.privacy') }}</RouterLink>
       </nav>
 
-      <!-- Extra Desktop (Contatore + Tema per schermi ampi) -->
+      <!-- Extra Desktop (Contatore + Switcher Lingua + Tema) -->
       <div class="extra-desktop">
         <Contatore />
+
+        <!-- Switcher Lingua Desktop -->
+        <div class="selettore-lingua" role="group" aria-label="Selezione lingua">
+          <button
+            type="button"
+            class="btn-lingua"
+            :class="{ attivo: isItalian }"
+            @click="setLingua('it')"
+            title="Italiano"
+          >
+            IT
+          </button>
+          <span class="separatore-lingua">/</span>
+          <button
+            type="button"
+            class="btn-lingua"
+            :class="{ attivo: isEnglish }"
+            @click="setLingua('en')"
+            title="English"
+          >
+            EN
+          </button>
+        </div>
 
         <button
           type="button"
@@ -117,7 +142,7 @@ onUnmounted(() => {
               <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
             </svg>
           </span>
-          <span class="testo-tema">{{ tema === 'dark' ? 'Chiaro' : 'Scuro' }}</span>
+          <span class="testo-tema">{{ tema === 'dark' ? (isItalian ? 'Chiaro' : 'Light') : (isItalian ? 'Scuro' : 'Dark') }}</span>
         </button>
       </div>
 
@@ -150,7 +175,7 @@ onUnmounted(() => {
             <RouterLink to="/" class="nav-card" @click="chiudiMenu">
               <div class="nav-card-info">
                 <span class="nav-card-num">01</span>
-                <span class="nav-card-nome">Home</span>
+                <span class="nav-card-nome">{{ t('nav.home') }}</span>
               </div>
               <span class="nav-card-freccia">&rarr;</span>
             </RouterLink>
@@ -158,7 +183,7 @@ onUnmounted(() => {
             <RouterLink to="/progetti" class="nav-card" @click="chiudiMenu">
               <div class="nav-card-info">
                 <span class="nav-card-num">02</span>
-                <span class="nav-card-nome">Progetti</span>
+                <span class="nav-card-nome">{{ t('nav.progetti') }}</span>
               </div>
               <span class="nav-card-freccia">&rarr;</span>
             </RouterLink>
@@ -166,7 +191,7 @@ onUnmounted(() => {
             <RouterLink to="/contatti" class="nav-card" @click="chiudiMenu">
               <div class="nav-card-info">
                 <span class="nav-card-num">03</span>
-                <span class="nav-card-nome">Contatti</span>
+                <span class="nav-card-nome">{{ t('nav.contatti') }}</span>
               </div>
               <span class="nav-card-freccia">&rarr;</span>
             </RouterLink>
@@ -174,13 +199,33 @@ onUnmounted(() => {
             <RouterLink to="/privacy" class="nav-card" @click="chiudiMenu">
               <div class="nav-card-info">
                 <span class="nav-card-num">04</span>
-                <span class="nav-card-nome">Privacy & Cookie</span>
+                <span class="nav-card-nome">{{ t('nav.privacy') }}</span>
               </div>
               <span class="nav-card-freccia">&rarr;</span>
             </RouterLink>
           </nav>
 
           <div class="divisorio-sottile"></div>
+
+          <!-- Switcher Lingua Mobile -->
+          <div class="selettore-lingua-mobile">
+            <button
+              type="button"
+              class="btn-lingua-mob"
+              :class="{ attivo: isItalian }"
+              @click="setLingua('it')"
+            >
+              🇮🇹 Italiano
+            </button>
+            <button
+              type="button"
+              class="btn-lingua-mob"
+              :class="{ attivo: isEnglish }"
+              @click="setLingua('en')"
+            >
+              🇬🇧 English
+            </button>
+          </div>
 
           <!-- Barra Azioni Rapide nel Menu Mobile -->
           <div class="menu-azioni-mobile">
@@ -332,6 +377,48 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 0.85rem;
+}
+
+/* Switcher Lingua Desktop */
+.selettore-lingua {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem 0.35rem;
+  border-radius: 8px;
+  border: 1px solid var(--bordo-medio);
+  background: var(--bg-superficie);
+  user-select: none;
+}
+
+.btn-lingua {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--testo-terziario);
+  padding: 0.2rem 0.4rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  line-height: 1;
+}
+
+.btn-lingua:hover {
+  color: var(--testo-primario);
+}
+
+.btn-lingua.attivo {
+  background: var(--accento);
+  color: #fff;
+  font-weight: 700;
+}
+
+.separatore-lingua {
+  font-size: 0.72rem;
+  color: var(--testo-terziario);
+  opacity: 0.6;
 }
 
 .pulsante-tema-desktop {
@@ -565,6 +652,38 @@ onUnmounted(() => {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--bordo-medio), transparent);
   margin: 0.25rem 0;
+}
+
+/* Switcher Lingua Mobile */
+.selettore-lingua-mobile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.btn-lingua-mob {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--bordo-medio);
+  background: var(--bg-primario);
+  color: var(--testo-secondario);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.btn-lingua-mob.attivo {
+  background: var(--accento);
+  color: #fff;
+  border-color: var(--accento);
+  font-weight: 700;
 }
 
 /* Sezione Azioni Mobile Inferiore */

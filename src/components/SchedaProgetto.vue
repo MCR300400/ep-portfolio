@@ -1,7 +1,11 @@
 <script setup>
+import { useLingua } from '../composables/useLingua'
+
+const { t } = useLingua()
+
 defineProps({
-  titolo: { type: String, required: true },
-  descrizione: { type: String, required: true },
+  titolo: { type: [String, Object], required: true },
+  descrizione: { type: [String, Object], required: true },
   tag: { type: Array, default: () => [] },
   linkGitHub: { type: String, default: '' },
   linkLive: { type: String, default: '' }
@@ -11,15 +15,15 @@ defineProps({
 <template>
   <div class="scheda">
     <div class="scheda-corpo">
-      <h3 class="scheda-titolo">{{ titolo }}</h3>
-      <p class="scheda-descrizione">{{ descrizione }}</p>
+      <h3 class="scheda-titolo">{{ t(titolo) }}</h3>
+      <p class="scheda-descrizione">{{ t(descrizione) }}</p>
       <div class="scheda-tag">
         <span v-for="t in tag" :key="t" class="tag">{{ t }}</span>
       </div>
     </div>
     <div class="scheda-footer" v-if="linkGitHub || linkLive">
       <a v-if="linkGitHub" :href="linkGitHub" target="_blank" rel="noopener noreferrer" class="pulsante pulsante-secondario">
-        GitHub
+        {{ t('scheda.github') }}
       </a>
       <a
         v-if="linkLive"
@@ -43,7 +47,7 @@ defineProps({
         >
           <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
         </svg>
-        Visita &rarr;
+        {{ t('scheda.visita') }}
       </a>
     </div>
   </div>
