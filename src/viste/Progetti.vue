@@ -9,17 +9,17 @@ const progetti = listaProgetti
 
 <template>
   <div class="pagina-progetti">
-    <header class="testata-pagina">
-      <h1>{{ isItalian ? 'Progetti' : 'Projects' }}</h1>
+    <div class="testata-pagina">
+      <h1>{{ isItalian ? 'Progetti & Architetture' : 'Projects & Architectures' }}</h1>
       <p>
         {{ isItalian
-          ? 'Applicazioni web, strumenti di lavoro ed esperimenti software ospitati su infrastruttura Cloudflare.'
-          : 'Web applications, tools, and software experiments hosted on Cloudflare infrastructure.'
+          ? 'Una selezione di progetti software, architetture serverless e implementazioni ad alte prestazioni.'
+          : 'A curated selection of software projects, serverless architectures, and high-performance applications.'
         }}
       </p>
-    </header>
+    </div>
 
-    <div class="lista-progetti">
+    <div class="griglia-progetti">
       <SchedaProgetto
         v-for="p in progetti"
         :key="p.id"
@@ -35,32 +35,31 @@ const progetti = listaProgetti
 
 <style scoped>
 .pagina-progetti {
-  padding: 3.5rem 0 4rem;
+  padding: 2.5rem 0;
 }
 
 .testata-pagina {
-  max-width: 60ch;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--bordo-sottile);
+  max-width: 600px;
+  margin-bottom: 2.5rem;
 }
 
 .testata-pagina h1 {
-  font-size: 2rem;
-  font-weight: 750;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.02em;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.015em;
   color: var(--testo-primario);
 }
 
 .testata-pagina p {
-  color: var(--testo-secondary, var(--testo-secondario));
+  color: var(--testo-secondario);
   font-size: 1.05rem;
-  line-height: 1.65;
+  line-height: 1.6;
 }
 
-.lista-progetti {
-  display: flex;
-  flex-direction: column;
+.griglia-progetti {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
 }
 </style>
