@@ -44,9 +44,9 @@ body {
 }
 
 .contenitore {
-  max-width: 1080px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 2rem;
 }
 
 .layout-app {

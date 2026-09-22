@@ -9,17 +9,17 @@ const progetti = listaProgetti
 
 <template>
   <div class="pagina-progetti">
-    <div class="testata-pagina">
-      <h1>{{ isItalian ? 'Progetti & Architetture' : 'Projects & Architectures' }}</h1>
-      <p>
+    <header class="testata-pagina">
+      <h1 class="titolo-sezione">{{ isItalian ? 'Tutti i Progetti' : 'All Projects' }}</h1>
+      <p class="descrizione-sezione">
         {{ isItalian
-          ? 'Una selezione di progetti software, architetture serverless e implementazioni ad alte prestazioni.'
-          : 'A curated selection of software projects, serverless architectures, and high-performance applications.'
+          ? 'Archivio completo delle applicazioni web, tool interattivi ed esperimenti distribuiti su Cloudflare.'
+          : 'Complete register of web applications, interactive tools, and systems deployed on Cloudflare.'
         }}
       </p>
-    </div>
+    </header>
 
-    <div class="griglia-progetti">
+    <div class="elenco-progetti">
       <SchedaProgetto
         v-for="p in progetti"
         :key="p.id"
@@ -35,31 +35,41 @@ const progetti = listaProgetti
 
 <style scoped>
 .pagina-progetti {
-  padding: 2.5rem 0;
+  padding: 4rem 0 5rem;
 }
 
 .testata-pagina {
-  max-width: 600px;
+  max-width: 65ch;
   margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--bordo-medio);
 }
 
-.testata-pagina h1 {
-  font-size: 2.2rem;
-  font-weight: 800;
+.titolo-sezione {
+  font-size: 2.4rem;
+  font-weight: 850;
   margin-bottom: 0.75rem;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.025em;
   color: var(--testo-primario);
 }
 
-.testata-pagina p {
+.descrizione-sezione {
   color: var(--testo-secondario);
-  font-size: 1.05rem;
-  line-height: 1.6;
+  font-size: 1.1rem;
+  line-height: 1.65;
 }
 
-.griglia-progetti {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
+.elenco-progetti {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .pagina-progetti {
+    padding: 2.5rem 0 3.5rem;
+  }
+  .titolo-sezione {
+    font-size: 1.85rem;
+  }
 }
 </style>
