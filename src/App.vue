@@ -44,7 +44,7 @@ body {
 }
 
 .contenitore {
-  max-width: 1080px;
+  max-width: 760px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }

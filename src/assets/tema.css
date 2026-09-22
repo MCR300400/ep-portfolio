@@ -1,85 +1,61 @@
 /* ==========================================================================
-   Design System: Edoardo Pippi Portfolio — Systems & Edge Architecture
-   Distinctive Cobalt & Obsidian Identity (frontend-design guidelines)
+   Design System: Edoardo Pippi — Editorial Engineering & Typography
+   Quiet, restrained, authentic craft. No artificial SaaS-card kits or glows.
    ========================================================================== */
 
 :root,
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  /* Surfaces: Deep obsidian & technical slate */
-  --bg-primario: #0a0e17;
-  --bg-superficie: #101623;
-  --bg-superficie-elevata: #182032;
-  --bg-superficie-hover: #1f2a42;
-  --header-bg: rgba(10, 14, 23, 0.88);
+  --bg-primario: #121214;
+  --bg-superficie: #19191d;
+  --bg-superficie-elevata: #222228;
+  --bg-superficie-hover: #2b2b32;
+  --header-bg: rgba(18, 18, 20, 0.90);
 
-  /* Typography */
-  --testo-primario: #f1f5f9;
-  --testo-secondario: #94a3b8;
-  --testo-terziario: #64748b;
-  --testo-invertito: #0a0e17;
+  --testo-primario: #eeeeef;
+  --testo-secondario: #94949e;
+  --testo-terziario: #65656f;
+  --testo-invertito: #121214;
 
-  /* Structural lines & subtle grids */
-  --bordo-sottile: rgba(255, 255, 255, 0.08);
-  --bordo-medio: rgba(255, 255, 255, 0.14);
-  --bordo-forte: rgba(255, 255, 255, 0.24);
+  --bordo-sottile: #232328;
+  --bordo-medio: #32323a;
+  --bordo-forte: #484854;
 
-  /* Accent: Precision Electric Cobalt */
   --accento: #3b82f6;
   --accento-hover: #60a5fa;
   --accento-attivo: #2563eb;
-  --accento-sfondo: rgba(59, 130, 246, 0.12);
-  --accento-sfondo-hover: rgba(59, 130, 246, 0.20);
-  --accento-bordo: rgba(59, 130, 246, 0.35);
+  --accento-sfondo: rgba(59, 130, 246, 0.08);
+  --accento-sfondo-hover: rgba(59, 130, 246, 0.15);
+  --accento-bordo: rgba(59, 130, 246, 0.25);
   --accento-testo: #93c5fd;
   --accento-contrasto: #ffffff;
-
-  /* Secondary engineering accents */
-  --accento-cyan: #06b6d4;
-  --accento-emerald: #10b981;
-
-  /* Shadows */
-  --ombra-scheda: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-  --ombra-scheda-hover: 0 12px 30px -4px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(59, 130, 246, 0.3);
 }
 
 :root[data-theme="light"] {
   color-scheme: light;
 
-  /* Surfaces: Crisp technical bone */
-  --bg-primario: #f8fafc;
-  --bg-superficie: #ffffff;
-  --bg-superficie-elevata: #f1f5f9;
-  --bg-superficie-hover: #e2e8f0;
-  --header-bg: rgba(248, 250, 252, 0.92);
+  --bg-primario: #ffffff;
+  --bg-superficie: #f8f8f9;
+  --bg-superficie-elevata: #f1f1f3;
+  --bg-superficie-hover: #e7e7eb;
+  --header-bg: rgba(255, 255, 255, 0.92);
 
-  /* Typography */
-  --testo-primario: #0f172a;
-  --testo-secondario: #475569;
-  --testo-terziario: #64748b;
+  --testo-primario: #111113;
+  --testo-secondario: #52525c;
+  --testo-terziario: #7e7e88;
   --testo-invertito: #ffffff;
 
-  /* Structural lines */
-  --bordo-sottile: rgba(15, 23, 42, 0.08);
-  --bordo-medio: rgba(15, 23, 42, 0.14);
-  --bordo-forte: rgba(15, 23, 42, 0.22);
+  --bordo-sottile: #ebebee;
+  --bordo-medio: #dbdbe0;
+  --bordo-forte: #bebec6;
 
-  /* Accent: Deep authoritative Cobalt */
-  --accento: #2563eb;
-  --accento-hover: #1d4ed8;
-  --accento-attivo: #1e40af;
-  --accento-sfondo: rgba(37, 99, 235, 0.08);
-  --accento-sfondo-hover: rgba(37, 99, 235, 0.14);
-  --accento-bordo: rgba(37, 99, 235, 0.28);
+  --accento: #1d4ed8;
+  --accento-hover: #1e40af;
+  --accento-attivo: #172554;
+  --accento-sfondo: rgba(29, 78, 216, 0.06);
+  --accento-sfondo-hover: rgba(29, 78, 216, 0.12);
+  --accento-bordo: rgba(29, 78, 216, 0.22);
   --accento-testo: #1d4ed8;
   --accento-contrasto: #ffffff;
-
-  /* Secondary engineering accents */
-  --accento-cyan: #0891b2;
-  --accento-emerald: #059669;
-
-  /* Shadows */
-  --ombra-scheda: 0 2px 8px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
-  --ombra-scheda-hover: 0 10px 24px -4px rgba(15, 23, 42, 0.1), 0 0 0 1px rgba(37, 99, 235, 0.28);
 }
