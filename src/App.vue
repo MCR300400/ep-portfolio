@@ -7,7 +7,7 @@ import Intestazione from './components/Intestazione.vue'
   <div class="layout-app">
     <Intestazione />
 
-    <main class="contenitore corpo-principale">
+    <main class="corpo-principale">
       <RouterView />
     </main>
 

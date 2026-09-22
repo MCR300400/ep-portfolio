@@ -5,7 +5,7 @@ const { isItalian } = useLingua()
 </script>
 
 <template>
-  <div class="pagina-contatti">
+  <div class="contenitore pagina-contatti">
     <header class="testata-pagina">
       <h1 class="titolo-sezione">{{ isItalian ? 'Contatti' : 'Contact' }}</h1>
       <p class="descrizione-sezione">

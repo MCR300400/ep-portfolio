@@ -8,7 +8,7 @@ const progetti = listaProgetti
 </script>
 
 <template>
-  <div class="pagina-progetti">
+  <div class="contenitore pagina-progetti">
     <header class="testata-pagina">
       <h1 class="titolo-sezione">{{ isItalian ? 'Tutti i Progetti' : 'All Projects' }}</h1>
       <p class="descrizione-sezione">

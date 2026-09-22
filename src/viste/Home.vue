@@ -83,142 +83,173 @@ const formazione = [
 
 <template>
   <div class="pagina-home">
-    <!-- Hero Section: Nome e Cognome in grande con colore arancione principale -->
-    <section class="sezione-hero">
-      <div class="hero-top-tag">
-        {{ isItalian ? 'Full-Stack Software Developer • Perugia, Italia' : 'Full-Stack Software Developer • Perugia, Italy' }}
+    <!-- Prima schermata a tutta altezza (100vh) con sfondo arancione e nome gigante -->
+    <section class="hero-arancione-fullscreen">
+      <div class="contenitore hero-fullscreen-interno">
+        <div class="hero-top-meta">
+          <span class="meta-label">
+            {{ isItalian ? 'Portfolio & Ingegneria Software' : 'Software Engineering Portfolio' }}
+          </span>
+          <span class="meta-sede">Perugia, Italia</span>
+        </div>
+
+        <div class="hero-titolo-blocco">
+          <h1 class="nome-gigante">
+            <span class="nome-riga">Edoardo</span>
+            <span class="nome-riga">Pippi</span>
+          </h1>
+          <p class="hero-qualifica">
+            {{ isItalian
+              ? 'Full-Stack Software Developer • Java, Spring Boot, Vue.js & Cloudflare'
+              : 'Full-Stack Software Developer • Java, Spring Boot, Vue.js & Cloudflare'
+            }}
+          </p>
+        </div>
+
+        <div class="hero-bottom-bar">
+          <a href="#contenuto" class="indicatore-scroll">
+            <span>{{ isItalian ? 'Scorri per scoprire' : 'Scroll down' }}</span>
+            <svg
+              class="icona-freccia-giu"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 5v14"></path>
+              <path d="m19 12-7 7-7-7"></path>
+            </svg>
+          </a>
+
+          <div class="hero-link-rapidi">
+            <RouterLink to="/progetti" class="link-hero-pill">
+              {{ isItalian ? 'Progetti' : 'Projects' }}
+            </RouterLink>
+            <RouterLink to="/contatti" class="link-hero-pill">
+              {{ isItalian ? 'Contatti' : 'Contact' }}
+            </RouterLink>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <h1 class="nome-hero">
-        Edoardo<br />
-        <span class="cognome-arancione">Pippi</span>
-      </h1>
-
-      <p class="sottotitolo-hero">
-        {{ isItalian
-          ? 'Progetto e sviluppo applicazioni web, mobile e architetture scalabili con Java, Spring Boot, Vue.js e l’ecosistema cloud di Cloudflare.'
-          : 'Designing and building web, mobile apps and scalable architectures with Java, Spring Boot, Vue.js, and the Cloudflare cloud ecosystem.'
-        }}
-      </p>
-
-      <div class="bio-dettaglio">
-        <p v-if="isItalian">
-          Sviluppatore con oltre 2 anni di esperienza professionale nella realizzazione di soluzioni software end-to-end. Attualmente lavoro presso <strong>Park It</strong> e frequento il corso di Laurea in Informatica presso l’<strong>Università degli Studi di Perugia</strong>.
+    <!-- Contenuto principale sotto la prima 100vh -->
+    <div id="contenuto" class="contenitore contenuto-sotto-hero">
+      
+      <!-- Bio introduttiva -->
+      <section class="sezione-bio">
+        <p class="bio-testo" v-if="isItalian">
+          Sviluppatore con oltre 2 anni di esperienza professionale nella realizzazione di soluzioni software end-to-end. Specializzato in <strong>Java</strong>, <strong>Spring Boot</strong>, <strong>Vue.js 3</strong> e architetture edge su <strong>Cloudflare</strong>. Lavoro presso <strong>Park It</strong> e frequento il corso di Laurea in Informatica presso l’<strong>Università degli Studi di Perugia</strong>.
         </p>
-        <p v-else>
-          Software developer with over 2 years of professional experience building end-to-end software solutions. Currently working at <strong>Park It</strong> and completing a Computer Science Degree at the <strong>University of Perugia</strong>.
+        <p class="bio-testo" v-else>
+          Software developer with over 2 years of professional experience building end-to-end software solutions. Specialized in <strong>Java</strong>, <strong>Spring Boot</strong>, <strong>Vue.js 3</strong>, and <strong>Cloudflare</strong> edge architectures. Currently working at <strong>Park It</strong> and studying Computer Science at the <strong>University of Perugia</strong>.
         </p>
-      </div>
+      </section>
 
-      <div class="azioni-hero">
-        <RouterLink to="/progetti" class="pulsante-hero primario">
-          {{ isItalian ? 'Esplora i progetti' : 'Explore projects' }}
-        </RouterLink>
-        <RouterLink to="/contatti" class="pulsante-hero secondario">
-          {{ isItalian ? 'Contattami' : 'Get in touch' }}
-        </RouterLink>
-      </div>
-    </section>
-
-    <!-- Sezione Progetti in evidenza (No card, indice aperto) -->
-    <section class="sezione-blocco">
-      <div class="sezione-testata">
-        <div>
-          <h2>{{ isItalian ? 'Progetti in evidenza' : 'Featured Projects' }}</h2>
-          <span class="sezione-descrizione">
-            {{ isItalian ? 'Applicazioni ed esperimenti distribuiti su Cloudflare' : 'Live applications and systems on Cloudflare' }}
-          </span>
+      <!-- Sezione Progetti in evidenza (No card, indice aperto) -->
+      <section class="sezione-blocco">
+        <div class="sezione-testata">
+          <div>
+            <h2>{{ isItalian ? 'Progetti in evidenza' : 'Featured Projects' }}</h2>
+            <span class="sezione-descrizione">
+              {{ isItalian ? 'Applicazioni ed esperimenti distribuiti su Cloudflare' : 'Live applications and systems on Cloudflare' }}
+            </span>
+          </div>
+          <RouterLink to="/progetti" class="link-tutti">
+            {{ isItalian ? 'Tutti i progetti' : 'All projects' }}
+          </RouterLink>
         </div>
-        <RouterLink to="/progetti" class="link-tutti">
-          {{ isItalian ? 'Tutti i progetti' : 'All projects' }}
-        </RouterLink>
-      </div>
 
-      <div class="elenco-progetti">
-        <SchedaProgetto
-          v-for="p in progettiInEvidenza"
-          :key="p.id"
-          :titolo="p.titolo"
-          :descrizione="p.descrizione"
-          :tag="p.tag"
-          :link-git-hub="p.linkGitHub"
-          :link-live="p.linkLive"
-        />
-      </div>
-    </section>
-
-    <!-- Sezione Competenze Tecniche (No card, colonne tipografiche) -->
-    <section class="sezione-blocco">
-      <div class="sezione-testata">
-        <div>
-          <h2>{{ isItalian ? 'Competenze Tecniche' : 'Technical Skills' }}</h2>
-          <span class="sezione-descrizione">
-            {{ isItalian ? 'Tecnologie e linguaggi consolidati sul campo' : 'Production-tested tools and languages' }}
-          </span>
+        <div class="elenco-progetti">
+          <SchedaProgetto
+            v-for="p in progettiInEvidenza"
+            :key="p.id"
+            :titolo="p.titolo"
+            :descrizione="p.descrizione"
+            :tag="p.tag"
+            :link-git-hub="p.linkGitHub"
+            :link-live="p.linkLive"
+          />
         </div>
-      </div>
+      </section>
 
-      <div class="griglia-competenze">
-        <div v-for="g in gruppiCompetenze" :key="t(g.categoria)" class="gruppo-competenza">
-          <h3 class="titolo-competenza">{{ t(g.categoria) }}</h3>
-          <ul class="lista-competenze">
-            <li v-for="c in g.competenze" :key="c" class="item-competenza">
-              {{ c }}
-            </li>
-          </ul>
+      <!-- Sezione Competenze Tecniche (No card, colonne tipografiche) -->
+      <section class="sezione-blocco">
+        <div class="sezione-testata">
+          <div>
+            <h2>{{ isItalian ? 'Competenze Tecniche' : 'Technical Skills' }}</h2>
+            <span class="sezione-descrizione">
+              {{ isItalian ? 'Tecnologie e linguaggi consolidati sul campo' : 'Production-tested tools and languages' }}
+            </span>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Sezione Esperienza Professionale (No card, timeline aperta) -->
-    <section class="sezione-blocco">
-      <div class="sezione-testata">
-        <div>
-          <h2>{{ isItalian ? 'Esperienza Professionale' : 'Work Experience' }}</h2>
-          <span class="sezione-descrizione">
-            {{ isItalian ? 'Percorso lavorativo e ruoli ricoperti' : 'Career path and roles' }}
-          </span>
+        <div class="griglia-competenze">
+          <div v-for="g in gruppiCompetenze" :key="t(g.categoria)" class="gruppo-competenza">
+            <h3 class="titolo-competenza">{{ t(g.categoria) }}</h3>
+            <ul class="lista-competenze">
+              <li v-for="c in g.competenze" :key="c" class="item-competenza">
+                {{ c }}
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div class="elenco-esperienze">
-        <article v-for="esp in esperienze" :key="t(esp.ruolo) + t(esp.periodo)" class="riga-esperienza">
-          <div class="esperienza-periodo">{{ t(esp.periodo) }}</div>
-          <div class="esperienza-corpo">
-            <h3 class="esperienza-ruolo">{{ t(esp.ruolo) }}</h3>
-            <div class="esperienza-meta">
-              <span class="esperienza-azienda">{{ esp.azienda }}</span>
-              <span class="separatore">•</span>
-              <span class="esperienza-luogo">{{ t(esp.luogo) }}</span>
+      <!-- Sezione Esperienza Professionale (No card, timeline aperta) -->
+      <section class="sezione-blocco">
+        <div class="sezione-testata">
+          <div>
+            <h2>{{ isItalian ? 'Esperienza Professionale' : 'Work Experience' }}</h2>
+            <span class="sezione-descrizione">
+              {{ isItalian ? 'Percorso lavorativo e ruoli ricoperti' : 'Career path and roles' }}
+            </span>
+          </div>
+        </div>
+
+        <div class="elenco-esperienze">
+          <article v-for="esp in esperienze" :key="t(esp.ruolo) + t(esp.periodo)" class="riga-esperienza">
+            <div class="esperienza-periodo">{{ t(esp.periodo) }}</div>
+            <div class="esperienza-corpo">
+              <h3 class="esperienza-ruolo">{{ t(esp.ruolo) }}</h3>
+              <div class="esperienza-meta">
+                <span class="esperienza-azienda">{{ esp.azienda }}</span>
+                <span class="separatore">•</span>
+                <span class="esperienza-luogo">{{ t(esp.luogo) }}</span>
+              </div>
+              <p class="esperienza-descrizione">{{ t(esp.descrizione) }}</p>
             </div>
-            <p class="esperienza-descrizione">{{ t(esp.descrizione) }}</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Sezione Formazione (No card, layout aperto) -->
-    <section class="sezione-blocco">
-      <div class="sezione-testata">
-        <div>
-          <h2>{{ isItalian ? 'Istruzione & Formazione' : 'Education & Qualifications' }}</h2>
-          <span class="sezione-descrizione">
-            {{ isItalian ? 'Percorso accademico e scientifico' : 'Academic background' }}
-          </span>
+          </article>
         </div>
-      </div>
+      </section>
 
-      <div class="elenco-formazione">
-        <article v-for="f in formazione" :key="t(f.titolo)" class="riga-formazione">
-          <div class="formazione-periodo">{{ t(f.anno) }}</div>
-          <div class="formazione-corpo">
-            <h3 class="formazione-titolo">{{ t(f.titolo) }}</h3>
-            <div class="formazione-istituto">{{ t(f.istituto) }} · {{ t(f.luogo) }}</div>
-            <p class="formazione-note">{{ t(f.note) }}</p>
+      <!-- Sezione Formazione (No card, layout aperto) -->
+      <section class="sezione-blocco">
+        <div class="sezione-testata">
+          <div>
+            <h2>{{ isItalian ? 'Istruzione & Formazione' : 'Education & Qualifications' }}</h2>
+            <span class="sezione-descrizione">
+              {{ isItalian ? 'Percorso accademico e scientifico' : 'Academic background' }}
+            </span>
           </div>
-        </article>
-      </div>
-    </section>
+        </div>
+
+        <div class="elenco-formazione">
+          <article v-for="f in formazione" :key="t(f.titolo)" class="riga-formazione">
+            <div class="formazione-periodo">{{ t(f.anno) }}</div>
+            <div class="formazione-corpo">
+              <h3 class="formazione-titolo">{{ t(f.titolo) }}</h3>
+              <div class="formazione-istituto">{{ t(f.istituto) }} · {{ t(f.luogo) }}</div>
+              <p class="formazione-note">{{ t(f.note) }}</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -228,103 +259,146 @@ const formazione = [
 }
 
 /* ==========================================================================
-   Hero Section: Grande impatto del nome con l'arancione su ogni schermo
+   PRIMA 100VH: Sfondo colore principale Arancione con Nome e Cognome gigante
    ========================================================================== */
-.sezione-hero {
-  padding: 5rem 0 4rem;
-  border-bottom: 1px solid var(--bordo-sottile);
+.hero-arancione-fullscreen {
+  width: 100%;
+  min-height: calc(100dvh - 4.25rem);
+  background-color: var(--accento);
+  color: #ffffff;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  box-sizing: border-box;
 }
 
-.hero-top-tag {
+.hero-fullscreen-interno {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.hero-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--accento);
-  margin-bottom: 1.25rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.88);
 }
 
-/* Fluid responsive typography: Scala splendidamente da 320px a 2560px */
-.nome-hero {
-  font-size: clamp(3.2rem, 11vw, 7.5rem);
-  font-weight: 850;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  color: var(--testo-primario);
-  margin-bottom: 1.75rem;
+.meta-label,
+.meta-sede {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
-.cognome-arancione {
-  color: var(--accento);
-  display: inline-block;
+.hero-titolo-blocco {
+  margin: auto 0;
+  padding: 1.5rem 0;
 }
 
-.sottotitolo-hero {
-  font-size: clamp(1.2rem, 2.5vw, 1.65rem);
-  font-weight: 500;
-  line-height: 1.45;
-  color: var(--testo-primario);
+/* Nome gigante responsive su mobile, tablet e desktop */
+.nome-gigante {
+  font-size: clamp(3.8rem, 13.5vw, 9.8rem);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.nome-riga {
+  display: block;
+}
+
+.hero-qualifica {
+  font-size: clamp(1.1rem, 2.3vw, 1.65rem);
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.35;
   letter-spacing: -0.015em;
   max-width: 48ch;
-  margin-bottom: 1.5rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
-.bio-dettaglio {
-  font-size: 1.05rem;
-  line-height: 1.72;
-  color: var(--testo-secondario);
-  max-width: 65ch;
-  margin-bottom: 2.5rem;
-}
-
-.bio-dettaglio strong {
-  color: var(--testo-primario);
-  font-weight: 600;
-}
-
-/* Azioni Hero: statiche, stabili, ZERO effetti di hover */
-.azioni-hero {
+.hero-bottom-bar {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-.pulsante-hero {
-  padding: 0.85rem 1.65rem;
-  border-radius: 6px;
-  font-weight: 650;
-  font-size: 0.95rem;
-  text-decoration: none;
+.indicatore-scroll {
   display: inline-flex;
   align-items: center;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: #ffffff;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
 }
 
-.pulsante-hero.primario {
-  background: var(--accento);
-  color: var(--accento-contrasto);
-  border: 1px solid var(--accento);
+.indicatore-scroll:hover {
+  opacity: 0.85;
 }
 
-.pulsante-hero.primario:hover {
-  background: var(--accento-hover);
-  border-color: var(--accento-hover);
+.hero-link-rapidi {
+  display: flex;
+  gap: 0.75rem;
 }
 
-.pulsante-hero.secondario {
-  background: transparent;
-  color: var(--testo-primario);
-  border: 1px solid var(--bordo-forte);
-}
-
-.pulsante-hero.secondario:hover {
-  border-color: var(--accento);
+.link-hero-pill {
+  font-size: 0.9rem;
+  font-weight: 700;
   color: var(--accento);
+  background: #ffffff;
+  padding: 0.5rem 1.15rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.link-hero-pill:hover {
+  background: #fff3eb;
 }
 
 /* ==========================================================================
-   Sezioni a blocchi aperti (ZERO card, ZERO hover physics)
+   Contenuto sotto la prima 100vh
    ========================================================================== */
+.contenuto-sotto-hero {
+  padding-top: 4rem;
+}
+
+.sezione-bio {
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid var(--bordo-sottile);
+}
+
+.bio-testo {
+  font-size: 1.25rem;
+  line-height: 1.75;
+  color: var(--testo-secondario);
+  max-width: 65ch;
+}
+
+.bio-testo strong {
+  color: var(--testo-primario);
+  font-weight: 650;
+}
+
+/* Sezioni a blocchi aperti (ZERO card, ZERO hover physics) */
 .sezione-blocco {
-  margin-top: 5rem;
+  margin-top: 4.5rem;
 }
 
 .sezione-testata {
@@ -480,8 +554,16 @@ const formazione = [
 
 /* Adattamenti Mobile & Tablet */
 @media (max-width: 768px) {
-  .sezione-hero {
-    padding: 3.5rem 0 3rem;
+  .hero-arancione-fullscreen {
+    min-height: calc(100dvh - 3.75rem);
+  }
+  .hero-fullscreen-interno {
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+  .nome-gigante {
+    font-size: clamp(3.2rem, 14vw, 5.5rem);
+    line-height: 0.92;
   }
   .riga-esperienza,
   .riga-formazione {
@@ -493,18 +575,14 @@ const formazione = [
   .formazione-periodo {
     font-size: 0.88rem;
   }
-  .azioni-hero {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .pulsante-hero {
-    justify-content: center;
-  }
   .sezione-blocco {
     margin-top: 3.5rem;
   }
   .sezione-testata h2 {
     font-size: 1.5rem;
+  }
+  .contenuto-sotto-hero {
+    padding-top: 2.5rem;
   }
 }
 </style>

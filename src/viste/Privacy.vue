@@ -5,7 +5,7 @@ const { isItalian } = useLingua()
 </script>
 
 <template>
-  <div class="pagina-privacy" v-if="isItalian">
+  <div class="contenitore pagina-privacy" v-if="isItalian">
     <h1>Informativa sulla Privacy & Analytics</h1>
     <p class="data-aggiornamento">Ultimo aggiornamento: Settembre 2026</p>
 
@@ -68,7 +68,7 @@ const { isItalian } = useLingua()
     </section>
   </div>
 
-  <div class="pagina-privacy" v-else>
+  <div class="contenitore pagina-privacy" v-else>
     <h1>Privacy Policy & Analytics Notice</h1>
     <p class="data-aggiornamento">Last updated: September 2026</p>
 
