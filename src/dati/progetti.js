@@ -15,6 +15,21 @@ export const listaProgetti = [
     linkLive: 'https://leetcodedone.pages.dev'
   },
   {
+    id: 'ep-vetrine',
+    inEvidenza: true,
+    titolo: {
+      it: 'ep-vetrine — Studio & Totem Builder per Vetrine Digitali',
+      en: 'ep-vetrine — Digital Storefront & Totem Showcase Studio'
+    },
+    descrizione: {
+      it: 'Applicazione web modulare per comporre, personalizzare e visualizzare in tempo reale vetrine digitali, locandine e totem da esposizione per boutique e negozi. Zero logiche di sconto/prezzo e massimo focus su brand identity, nuovi arrivi, capsule collection e narrazione materica. Include anteprima multi-formato (16:9, 9:16, 4:5), modalità Kiosk a schermo intero, generatore QR code client-side ed export PDF/JSON.',
+      en: 'Modular web application to compose, customize, and preview in real time digital storefronts, posters, and display totems for boutiques and retail shops. Zero discount or pricing mechanics, placing exclusive focus on brand identity, new arrivals, seasonal capsules, and tactile storytelling. Features multi-format preview (16:9, 9:16, 4:5), fullscreen Kiosk mode, client-side QR generation, and PDF/JSON export.'
+    },
+    tag: ['Cloudflare Pages', 'Vue 3', 'TypeScript', 'Tailwind CSS', 'Kiosk Mode', 'Client-side QR'],
+    linkGitHub: 'https://github.com/MCR300400/ep-vetrine',
+    linkLive: 'https://ep-vetrine.pages.dev'
+  },
+  {
     id: 'ep-board',
     inEvidenza: true,
     titolo: {
