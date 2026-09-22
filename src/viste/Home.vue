@@ -11,16 +11,34 @@ const progettiInEvidenza = computed(() => listaProgetti.filter(p => p.inEvidenza
 
 const gruppiCompetenze = [
   {
-    categoria: { it: 'Backend & Architettura', en: 'Backend & Architecture' },
-    competenze: ['Java', 'Spring Boot', 'Oracle', 'Python', 'RESTful API', 'OOP', 'SQL & SQLite', 'C / C#']
+    categoria: { it: 'Backend & Sistemi', en: 'Backend & Systems' },
+    competenze: ['Java', 'Spring Boot', 'SQL & SQLite', 'Oracle', 'RESTful API', 'Python', 'C / C#']
   },
   {
-    categoria: { it: 'Frontend & Mobile', en: 'Frontend & Mobile' },
-    competenze: ['Vue.js 3', 'Vite', 'Flutter', 'Dart', 'TypeScript', 'JavaScript', 'HTML5 / CSS3']
+    categoria: { it: 'Frontend & Interfacce', en: 'Frontend & Interfaces' },
+    competenze: ['Vue.js 3', 'TypeScript', 'Vite', 'Flutter / Dart', 'Canvas 2D', 'Web Audio API']
   },
   {
-    categoria: { it: 'Cloud, Tooling & Metodologie', en: 'Cloud, Tooling & Methodologies' },
-    competenze: ['Cloudflare (Workers, D1, Pages)', 'Git', 'Agile / Scrum', 'Problem Solving', 'Debugging']
+    categoria: { it: 'Edge & Cloudflare Stack', en: 'Edge & Cloudflare Stack' },
+    competenze: ['Cloudflare Workers', 'D1 Database', 'Durable Objects', 'WebSockets', 'Pages', 'Zero Trust']
+  }
+]
+
+const telemetryHighlights = [
+  {
+    label: { it: 'Architettura Edge', en: 'Edge Architecture' },
+    valore: '100% Serverless',
+    dettaglio: { it: 'Deploy globale su Cloudflare V8 isolates', en: 'Global deploy on Cloudflare V8 isolates' }
+  },
+  {
+    label: { it: 'Overhead Runtime', en: 'Runtime Overhead' },
+    valore: '0 dipendenze',
+    dettaglio: { it: 'Worker nativo per telemetria e ingest', en: 'Zero runtime dependencies on backend worker' }
+  },
+  {
+    label: { it: 'Sincronizzazione', en: 'Synchronization' },
+    valore: 'Real-time state',
+    dettaglio: { it: 'Durable Objects & WebSockets a 60 FPS', en: 'Durable Objects & WebSockets at 60 FPS' }
   }
 ]
 
@@ -87,24 +105,21 @@ const formazione = [
     <section class="sezione-hero">
       <div class="badge-disponibile">
         <span class="dot"></span>
-        {{ isItalian ? 'Full-Stack Software Developer • Perugia, Italia' : 'Full-Stack Software Developer • Perugia, Italy' }}
+        {{ isItalian ? 'Software Developer • Architetture Cloud & Sistemi Edge' : 'Software Developer • Cloud & Edge Architectures' }}
       </div>
       <h1 class="titolo-hero">
         {{ isItalian
-          ? 'Progetto e sviluppo applicazioni web, mobile e architetture scalabili.'
-          : 'Designing and building web, mobile apps and scalable architectures.'
+          ? 'Progetto e sviluppo applicazioni web ad alte prestazioni, sistemi distribuiti e architetture edge.'
+          : 'Designing and building high-performance web applications, distributed systems, and edge architectures.'
         }}
       </h1>
-      <p class="sottotitolo-hero" v-if="isItalian">
-        Ciao, sono <strong>Edoardo Pippi</strong>. Sviluppatore con oltre 2 anni di esperienza professionale
-        nella realizzazione di soluzioni software end-to-end. Specializzato in <strong>Java</strong>,
-        <strong>Spring Boot</strong>, <strong>Vue.js 3</strong> e <strong>Flutter</strong>, con approccio Agile e passione per l'ingegneria del software pulita ed efficiente.
+      <p class="sottotitolo-hero">
+        {{ isItalian
+          ? 'Ciao, sono Edoardo Pippi. Sviluppatore full-stack con oltre 2 anni di esperienza sul campo. Specializzato in Java, Spring Boot, Vue.js 3 e l’ecosistema serverless Cloudflare.'
+          : 'Hi, I am Edoardo Pippi. Full-stack developer with over 2 years of professional experience. Specializing in Java, Spring Boot, Vue.js 3, and the Cloudflare serverless ecosystem.'
+        }}
       </p>
-      <p class="sottotitolo-hero" v-else>
-        Hi, I am <strong>Edoardo Pippi</strong>. Software developer with over 2 years of professional experience
-        building end-to-end software solutions. Specialized in <strong>Java</strong>,
-        <strong>Spring Boot</strong>, <strong>Vue.js 3</strong>, and <strong>Flutter</strong>, with an Agile mindset and a passion for clean, high-performance software engineering.
-      </p>
+
       <div class="azioni-hero">
         <RouterLink to="/progetti" class="pulsante-hero primario">
           {{ isItalian ? 'Esplora i progetti' : 'Explore projects' }}
@@ -113,22 +128,13 @@ const formazione = [
           {{ isItalian ? 'Contattami' : 'Get in touch' }}
         </RouterLink>
       </div>
-    </section>
 
-    <!-- Sezione Competenze Tecniche -->
-    <section class="sezione-blocco">
-      <div class="sezione-testata">
-        <h2>{{ isItalian ? 'Competenze Tecniche' : 'Technical Skills' }}</h2>
-        <span class="sezione-sottotitolo">
-          {{ isItalian ? 'Stack tecnologico consolidato sul campo' : 'Field-tested technology stack' }}
-        </span>
-      </div>
-      <div class="griglia-competenze">
-        <div v-for="g in gruppiCompetenze" :key="t(g.categoria)" class="scheda-competenza">
-          <h3 class="titolo-competenza">{{ t(g.categoria) }}</h3>
-          <div class="lista-badge">
-            <span v-for="c in g.competenze" :key="c" class="badge-tech">{{ c }}</span>
-          </div>
+      <!-- Telemetry Highlights Strip -->
+      <div class="telemetria-strip">
+        <div v-for="tItem in telemetryHighlights" :key="t(tItem.label)" class="telemetria-item">
+          <span class="telemetria-valore">{{ tItem.valore }}</span>
+          <span class="telemetria-titolo">{{ t(tItem.label) }}</span>
+          <span class="telemetria-desc">{{ t(tItem.dettaglio) }}</span>
         </div>
       </div>
     </section>
@@ -136,9 +142,14 @@ const formazione = [
     <!-- Sezione Progetti in evidenza -->
     <section class="sezione-blocco">
       <div class="sezione-testata">
-        <h2>{{ isItalian ? 'Progetti in evidenza' : 'Featured Projects' }}</h2>
+        <div>
+          <h2>{{ isItalian ? 'Progetti in evidenza' : 'Featured Projects' }}</h2>
+          <span class="sezione-sottotitolo">
+            {{ isItalian ? 'Applicazioni ed esperimenti operativi ospitati su Cloudflare' : 'Live applications and operational systems on Cloudflare' }}
+          </span>
+        </div>
         <RouterLink to="/progetti" class="link-tutti">
-          {{ isItalian ? 'Vedi tutti →' : 'View all →' }}
+          {{ isItalian ? 'Tutti i progetti' : 'All projects' }}
         </RouterLink>
       </div>
       <div class="griglia-progetti">
@@ -154,28 +165,55 @@ const formazione = [
       </div>
     </section>
 
-    <!-- Sezione Esperienza Lavorativa & Formazione -->
+    <!-- Sezione Competenze Tecniche -->
     <section class="sezione-blocco">
       <div class="sezione-testata">
-        <h2>{{ isItalian ? 'Esperienza Professionale' : 'Work Experience' }}</h2>
-        <span class="sezione-sottotitolo">
-          {{ isItalian ? 'Percorso e ruoli ricoperti' : 'Career path and roles' }}
-        </span>
+        <div>
+          <h2>{{ isItalian ? 'Competenze Tecniche' : 'Technical Skills' }}</h2>
+          <span class="sezione-sottotitolo">
+            {{ isItalian ? 'Strumenti e tecnologie consolidate in produzione' : 'Production-tested tools and languages' }}
+          </span>
+        </div>
       </div>
-      <div class="lista-esperienze">
-        <article v-for="esp in esperienze" :key="t(esp.ruolo) + t(esp.periodo)" class="scheda-esperienza">
-          <div class="esp-header">
-            <div>
-              <h3 class="esp-ruolo">{{ t(esp.ruolo) }}</h3>
-              <div class="esp-azienda">
-                <span class="nome-azienda">{{ esp.azienda }}</span>
-                <span class="separatore">•</span>
-                <span class="luogo-azienda">{{ t(esp.luogo) }}</span>
-              </div>
-            </div>
-            <span class="esp-periodo">{{ t(esp.periodo) }}</span>
+      <div class="griglia-competenze">
+        <div v-for="g in gruppiCompetenze" :key="t(g.categoria)" class="scheda-competenza">
+          <h3 class="titolo-competenza">{{ t(g.categoria) }}</h3>
+          <div class="lista-badge">
+            <span v-for="c in g.competenze" :key="c" class="badge-tech">{{ c }}</span>
           </div>
-          <p class="esp-descrizione">{{ t(esp.descrizione) }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione Esperienza Lavorativa -->
+    <section class="sezione-blocco">
+      <div class="sezione-testata">
+        <div>
+          <h2>{{ isItalian ? 'Esperienza Professionale' : 'Work Experience' }}</h2>
+          <span class="sezione-sottotitolo">
+            {{ isItalian ? 'Percorso lavorativo e contributi tecnici' : 'Career timeline and technical contributions' }}
+          </span>
+        </div>
+      </div>
+      <div class="timeline-esperienze">
+        <article v-for="esp in esperienze" :key="t(esp.ruolo) + t(esp.periodo)" class="item-esperienza">
+          <div class="linea-indicatore">
+            <span class="nodo-tempo"></span>
+          </div>
+          <div class="contenuto-esperienza">
+            <div class="esp-header">
+              <div>
+                <h3 class="esp-ruolo">{{ t(esp.ruolo) }}</h3>
+                <div class="esp-azienda">
+                  <span class="nome-azienda">{{ esp.azienda }}</span>
+                  <span class="separatore">•</span>
+                  <span class="luogo-azienda">{{ t(esp.luogo) }}</span>
+                </div>
+              </div>
+              <span class="esp-periodo">{{ t(esp.periodo) }}</span>
+            </div>
+            <p class="esp-descrizione">{{ t(esp.descrizione) }}</p>
+          </div>
         </article>
       </div>
     </section>
@@ -183,10 +221,12 @@ const formazione = [
     <!-- Sezione Formazione & Istruzione -->
     <section class="sezione-blocco">
       <div class="sezione-testata">
-        <h2>{{ isItalian ? 'Istruzione & Formazione' : 'Education & Qualifications' }}</h2>
-        <span class="sezione-sottotitolo">
-          {{ isItalian ? 'Percorso accademico' : 'Academic background' }}
-        </span>
+        <div>
+          <h2>{{ isItalian ? 'Istruzione & Formazione' : 'Education & Qualifications' }}</h2>
+          <span class="sezione-sottotitolo">
+            {{ isItalian ? 'Formazione accademica e scientifica' : 'Academic and scientific background' }}
+          </span>
+        </div>
       </div>
       <div class="griglia-formazione">
         <article v-for="f in formazione" :key="t(f.titolo)" class="scheda-formazione">
@@ -204,69 +244,66 @@ const formazione = [
 
 <style scoped>
 .pagina-home {
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
 }
 
 .sezione-hero {
   padding: 4.5rem 0 3.5rem;
-  max-width: 820px;
+  max-width: 860px;
 }
 
 .badge-disponibile {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 0.8rem;
+  padding: 0.35rem 0.85rem;
   background: var(--accento-sfondo);
   color: var(--accento);
   border: 1px solid var(--accento-bordo);
-  border-radius: 9999px;
+  border-radius: 6px;
   font-size: 0.82rem;
-  font-weight: 550;
+  font-weight: 600;
   margin-bottom: 1.5rem;
-  letter-spacing: 0.01em;
 }
 
 .dot {
-  width: 6px;
-  height: 6px;
-  background-color: var(--accento);
+  width: 7px;
+  height: 7px;
+  background-color: var(--accento-emerald);
   border-radius: 50%;
+  box-shadow: 0 0 8px var(--accento-emerald);
 }
 
 .titolo-hero {
-  font-size: 2.85rem;
+  font-size: 2.75rem;
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  line-height: 1.18;
+  letter-spacing: -0.028em;
   margin-bottom: 1.25rem;
   color: var(--testo-primario);
 }
 
 .sottotitolo-hero {
-  font-size: 1.15rem;
-  line-height: 1.68;
+  font-size: 1.12rem;
+  line-height: 1.7;
   color: var(--testo-secondario);
-  margin-bottom: 2.25rem;
-}
-
-.sottotitolo-hero strong {
-  color: var(--testo-primario);
-  font-weight: 600;
+  margin-bottom: 2rem;
+  max-width: 720px;
 }
 
 .azioni-hero {
   display: flex;
-  gap: 1rem;
+  gap: 0.85rem;
+  margin-bottom: 3rem;
 }
 
 .pulsante-hero {
   padding: 0.75rem 1.45rem;
-  border-radius: 8px;
+  border-radius: 6px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
   display: inline-flex;
   align-items: center;
 }
@@ -292,43 +329,89 @@ const formazione = [
   border-color: var(--bordo-forte);
 }
 
-/* Sezioni a blocchi strutturati */
+/* Telemetry Strip */
+.telemetria-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--bg-superficie);
+  border: 1px solid var(--bordo-sottile);
+  border-radius: 8px;
+}
+
+.telemetria-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.telemetria-valore {
+  font-size: 1.1rem;
+  font-weight: 750;
+  color: var(--accento-testo);
+  letter-spacing: -0.01em;
+}
+
+.telemetria-titolo {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--testo-primario);
+}
+
+.telemetria-desc {
+  font-size: 0.78rem;
+  color: var(--testo-terziario);
+  line-height: 1.4;
+}
+
+/* Sezioni */
 .sezione-blocco {
-  margin-top: 4rem;
+  margin-top: 4.5rem;
 }
 
 .sezione-testata {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-end;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
 }
 
 .sezione-testata h2 {
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   font-weight: 750;
   color: var(--testo-primario);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
 
 .sezione-sottotitolo {
+  display: block;
   font-size: 0.88rem;
   color: var(--testo-terziario);
+  margin-top: 0.25rem;
 }
 
 .link-tutti {
   color: var(--accento);
   text-decoration: none;
-  font-weight: 550;
+  font-weight: 600;
   font-size: 0.9rem;
-  transition: color 0.15s ease;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.15s ease;
 }
 
 .link-tutti:hover {
-  color: var(--accento-hover);
-  text-decoration: underline;
+  border-bottom-color: var(--accento);
+}
+
+/* Griglia Progetti */
+.griglia-progetti {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
 }
 
 /* Griglia Competenze */
@@ -341,67 +424,83 @@ const formazione = [
 .scheda-competenza {
   background: var(--bg-superficie);
   border: 1px solid var(--bordo-sottile);
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 1.4rem;
   box-shadow: var(--ombra-scheda);
-  transition: border-color 0.2s ease, background-color 0.25s ease;
-}
-
-.scheda-competenza:hover {
-  border-color: var(--accento-bordo);
 }
 
 .titolo-competenza {
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 700;
   color: var(--testo-primario);
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.85rem;
   letter-spacing: -0.01em;
 }
 
 .lista-badge {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.4rem;
 }
 
 .badge-tech {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 550;
-  padding: 0.25rem 0.6rem;
+  padding: 0.25rem 0.55rem;
   background: var(--bg-superficie-elevata);
   color: var(--testo-secondario);
   border: 1px solid var(--bordo-sottile);
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
-/* Griglia Progetti */
-.griglia-progetti {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
-}
-
-/* Esperienze lavorative */
-.lista-esperienze {
+/* Timeline Esperienze */
+.timeline-esperienze {
   display: flex;
   flex-direction: column;
+}
+
+.item-esperienza {
+  display: flex;
   gap: 1.25rem;
 }
 
-.scheda-esperienza {
-  background: var(--bg-superficie);
-  border: 1px solid var(--bordo-sottile);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: var(--ombra-scheda);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+.linea-indicatore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 16px;
 }
 
-.scheda-esperienza:hover {
-  border-color: var(--accento-bordo);
-  transform: translateY(-2px);
-  box-shadow: var(--ombra-scheda-hover);
+.nodo-tempo {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accento);
+  box-shadow: 0 0 0 3px var(--accento-sfondo);
+  margin-top: 0.4rem;
+  flex-shrink: 0;
+}
+
+.linea-indicatore::after {
+  content: "";
+  flex: 1;
+  width: 2px;
+  background: var(--bordo-sottile);
+  margin-top: 0.35rem;
+}
+
+.item-esperienza:last-child .linea-indicatore::after {
+  display: none;
+}
+
+.contenuto-esperienza {
+  flex: 1;
+  background: var(--bg-superficie);
+  border: 1px solid var(--bordo-sottile);
+  border-radius: 8px;
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--ombra-scheda);
 }
 
 .esp-header {
@@ -410,11 +509,11 @@ const formazione = [
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.75rem;
 }
 
 .esp-ruolo {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--testo-primario);
   letter-spacing: -0.01em;
@@ -423,7 +522,7 @@ const formazione = [
 .esp-azienda {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.4rem;
   font-size: 0.88rem;
   margin-top: 0.2rem;
 }
@@ -442,18 +541,18 @@ const formazione = [
 }
 
 .esp-periodo {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  padding: 0.22rem 0.65rem;
+  padding: 0.2rem 0.6rem;
   background: var(--bg-superficie-elevata);
   color: var(--testo-secondario);
   border: 1px solid var(--bordo-sottile);
-  border-radius: 9999px;
+  border-radius: 4px;
   white-space: nowrap;
 }
 
 .esp-descrizione {
-  font-size: 0.94rem;
+  font-size: 0.92rem;
   line-height: 1.62;
   color: var(--testo-secondario);
 }
@@ -468,14 +567,9 @@ const formazione = [
 .scheda-formazione {
   background: var(--bg-superficie);
   border: 1px solid var(--bordo-sottile);
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 1.4rem;
   box-shadow: var(--ombra-scheda);
-  transition: border-color 0.2s ease;
-}
-
-.scheda-formazione:hover {
-  border-color: var(--accento-bordo);
 }
 
 .formazione-top {
@@ -487,7 +581,7 @@ const formazione = [
 }
 
 .formazione-titolo {
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 700;
   color: var(--testo-primario);
 }
@@ -507,14 +601,14 @@ const formazione = [
 }
 
 .formazione-note {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   line-height: 1.55;
   color: var(--testo-terziario);
 }
 
 @media (max-width: 680px) {
   .titolo-hero {
-    font-size: 2.1rem;
+    font-size: 2.05rem;
   }
   .sottotitolo-hero {
     font-size: 1rem;

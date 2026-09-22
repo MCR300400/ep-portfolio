@@ -10,8 +10,8 @@ const { isItalian } = useLingua()
       <h1>{{ isItalian ? 'Contatti' : 'Contact' }}</h1>
       <p>
         {{ isItalian
-          ? 'Interessato a nuove opportunità professionali, collaborazioni o progetti di sviluppo software full-stack? Sentiti libero di contattarmi.'
-          : 'Interested in new professional opportunities, collaborations, or full-stack software development projects? Feel free to reach out.'
+          ? 'Interessato a opportunità professionali, collaborazioni su architetture cloud, backend e sviluppo full-stack? Scrivimi pure.'
+          : 'Interested in professional opportunities, collaborations on cloud architectures, backend systems, and full-stack engineering? Feel free to reach out.'
         }}
       </p>
     </div>
@@ -22,7 +22,7 @@ const { isItalian } = useLingua()
         <a href="mailto:edoardopippi00@gmail.com" class="valore">edoardopippi00@gmail.com</a>
       </div>
       <div class="canale-contatto">
-        <span class="label">{{ isItalian ? 'Sede' : 'Location' }}</span>
+        <span class="label">{{ isItalian ? 'Sede operativa' : 'Location' }}</span>
         <span class="valore-statico">{{ isItalian ? 'Perugia, Italia' : 'Perugia, Italy' }}</span>
       </div>
       <div class="canale-contatto">
@@ -39,22 +39,22 @@ const { isItalian } = useLingua()
 
 <style scoped>
 .pagina-contatti {
-  padding: 2.5rem 0;
-  max-width: 600px;
+  padding: 3rem 0;
+  max-width: 620px;
 }
 
 .testata-pagina h1 {
-  font-size: 2.2rem;
+  font-size: 2.1rem;
   font-weight: 800;
   margin-bottom: 0.75rem;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   color: var(--testo-primario);
 }
 
 .testata-pagina p {
   color: var(--testo-secondario);
   font-size: 1.05rem;
-  line-height: 1.6;
+  line-height: 1.62;
   margin-bottom: 2rem;
 }
 
@@ -64,29 +64,33 @@ const { isItalian } = useLingua()
   gap: 1.25rem;
   background: var(--bg-superficie);
   border: 1px solid var(--bordo-sottile);
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 1.75rem;
   box-shadow: var(--ombra-scheda);
-  transition: background-color 0.25s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .canale-contatto {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--bordo-sottile);
+}
+
+.canale-contatto:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .label {
-  font-size: 0.78rem;
-  font-weight: 650;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--testo-terziario);
 }
 
 .valore {
   font-size: 1.05rem;
-  font-weight: 550;
+  font-weight: 600;
   color: var(--accento);
   text-decoration: none;
   transition: color 0.15s ease;
@@ -99,7 +103,7 @@ const { isItalian } = useLingua()
 
 .valore-statico {
   font-size: 1.05rem;
-  font-weight: 550;
+  font-weight: 600;
   color: var(--testo-primario);
 }
 </style>
