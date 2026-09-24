@@ -112,6 +112,22 @@ onUnmounted(() => {
     aggiornaMetaThemeColor()
   }
 })
+
+function scorriAContenuto(e) {
+  if (e) e.preventDefault()
+  const el = document.getElementById('contenuto')
+  if (el) {
+    const headerEl = document.querySelector('.header')
+    const headerHeight = headerEl ? headerEl.offsetHeight : 68
+    const elementPosition = el.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.pageYOffset - headerHeight
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    })
+  }
+}
 </script>
 
 <template>
@@ -140,7 +156,12 @@ onUnmounted(() => {
         </div>
 
         <div class="hero-bottom-bar">
-          <a href="#contenuto" class="indicatore-scroll">
+          <button
+            type="button"
+            class="indicatore-scroll"
+            @click="scorriAContenuto"
+            aria-label="Scorri alla sezione contenuti"
+          >
             <span>{{ isItalian ? 'Scorri per scoprire' : 'Scroll down' }}</span>
             <svg
               class="icona-freccia-giu"
@@ -152,11 +173,12 @@ onUnmounted(() => {
               stroke-width="2.5"
               stroke-linecap="round"
               stroke-linejoin="round"
+              aria-hidden="true"
             >
               <path d="M12 5v14"></path>
               <path d="m19 12-7 7-7-7"></path>
             </svg>
-          </a>
+          </button>
 
           <div class="hero-link-rapidi">
             <RouterLink to="/progetti" class="link-hero-pill">
@@ -370,10 +392,23 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: inherit;
   font-size: 0.95rem;
   font-weight: 650;
   color: #ffffff;
+  background: transparent;
+  border: none;
+  padding: 0.4rem 0;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
   text-decoration: none;
+}
+
+.indicatore-scroll * {
+  pointer-events: none;
 }
 
 .hero-link-rapidi {
@@ -389,11 +424,17 @@ onUnmounted(() => {
   padding: 0.5rem 1.15rem;
   border-radius: 9999px;
   text-decoration: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ==========================================================================
    Contenuto sotto la prima 100vh
    ========================================================================== */
+#contenuto {
+  scroll-margin-top: 5rem;
+}
+
 .contenuto-sotto-hero {
   padding-top: 4rem;
 }

@@ -27,6 +27,10 @@ import Intestazione from './components/Intestazione.vue'
 
 <style>
 /* Reset & stili globali */
+html {
+  scroll-behavior: smooth;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
