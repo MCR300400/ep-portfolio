@@ -263,13 +263,17 @@ const formazione = [
    ========================================================================== */
 .hero-arancione-fullscreen {
   width: 100%;
-  min-height: calc(100dvh - 4.25rem);
+  min-height: calc(100vh - 4.25rem);
+  min-height: calc(100svh - 4.25rem);
   background-color: var(--accento);
   color: #ffffff;
   display: flex;
   align-items: stretch;
   position: relative;
   box-sizing: border-box;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  contain: content;
 }
 
 .hero-fullscreen-interno {
@@ -288,12 +292,7 @@ const formazione = [
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.88);
-}
-
-.meta-label,
-.meta-sede {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .hero-titolo-blocco {
@@ -309,7 +308,6 @@ const formazione = [
   letter-spacing: -0.045em;
   color: #ffffff;
   margin-bottom: 1.5rem;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
 .nome-riga {
@@ -323,7 +321,6 @@ const formazione = [
   line-height: 1.35;
   letter-spacing: -0.015em;
   max-width: 48ch;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .hero-bottom-bar {
@@ -344,11 +341,6 @@ const formazione = [
   font-weight: 650;
   color: #ffffff;
   text-decoration: none;
-  transition: opacity 0.15s ease;
-}
-
-.indicatore-scroll:hover {
-  opacity: 0.85;
 }
 
 .hero-link-rapidi {
@@ -364,12 +356,6 @@ const formazione = [
   padding: 0.5rem 1.15rem;
   border-radius: 9999px;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-
-.link-hero-pill:hover {
-  background: #fff3eb;
 }
 
 /* ==========================================================================
@@ -555,7 +541,8 @@ const formazione = [
 /* Adattamenti Mobile & Tablet */
 @media (max-width: 768px) {
   .hero-arancione-fullscreen {
-    min-height: calc(100dvh - 3.75rem);
+    min-height: calc(100vh - 4.25rem);
+    min-height: calc(100svh - 4.25rem);
   }
   .hero-fullscreen-interno {
     padding-top: 1.75rem;
