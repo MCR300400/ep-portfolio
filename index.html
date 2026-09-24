@@ -3,15 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Edoardo Pippi — Full-Stack Software Developer</title>
     <meta name="description" content="Edoardo Pippi — Full-Stack Software Developer con esperienza in Java, Spring Boot, Vue.js, Flutter e architetture cloud moderne." />
+    <!-- Colorazione barra di ricerca e status bar per iPhone Safari, Android Chrome, macOS Safari, PWA -->
+    <meta name="theme-color" content="#f97316" id="theme-color-meta" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <script>
       (function () {
         try {
           var salvato = localStorage.getItem('ep_tema');
           var tema = (salvato === 'light' || salvato === 'dark') ? salvato : 'dark';
           document.documentElement.setAttribute('data-theme', tema);
+          var metaTheme = document.getElementById('theme-color-meta');
+          if (metaTheme) {
+            metaTheme.setAttribute('content', tema === 'light' ? '#ea580c' : '#f97316');
+          }
         } catch (e) {
           document.documentElement.setAttribute('data-theme', 'dark');
         }

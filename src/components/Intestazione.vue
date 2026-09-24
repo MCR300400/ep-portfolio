@@ -302,6 +302,63 @@ onUnmounted(() => {
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* Quando si è in cima all'Hero, l'header si fonde con lo sfondo arancione e la barra del browser */
+:global(html.su-hero-arancione) .header {
+  background-color: var(--accento);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+:global(html.su-hero-arancione) .logo {
+  color: #ffffff;
+}
+
+:global(html.su-hero-arancione) .logo-iniziali {
+  background: #ffffff;
+  color: var(--accento);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+:global(html.su-hero-arancione) .nav-link {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+:global(html.su-hero-arancione) .nav-link:hover,
+:global(html.su-hero-arancione) .nav-link.router-link-active {
+  color: #ffffff;
+}
+
+:global(html.su-hero-arancione) .nav-link.router-link-active::after {
+  background: #ffffff;
+}
+
+:global(html.su-hero-arancione) .btn-lingua {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+:global(html.su-hero-arancione) .btn-lingua.attivo {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+:global(html.su-hero-arancione) .separatore-lingua {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+:global(html.su-hero-arancione) .pulsante-tema-desktop,
+:global(html.su-hero-arancione) .btn-menu-mobile {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+:global(html.su-hero-arancione) .badge-contatore {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #ffffff;
 }
 
 .header-interno {

@@ -1,9 +1,10 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import SchedaProgetto from '../components/SchedaProgetto.vue'
 import { listaProgetti } from '../dati/progetti'
 import { useLingua } from '../composables/useLingua'
+import { aggiornaMetaThemeColor } from '../composables/useTema'
 
 const { isItalian, t } = useLingua()
 
@@ -79,6 +80,38 @@ const formazione = [
     }
   }
 ]
+
+let heroObserver = null
+
+onMounted(() => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.classList.add('su-hero-arancione')
+    aggiornaMetaThemeColor()
+
+    const heroEl = document.querySelector('.hero-arancione-fullscreen')
+    if (heroEl && 'IntersectionObserver' in window) {
+      heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const isVisible = entry.isIntersecting && entry.intersectionRatio > 0.05
+          document.documentElement.classList.toggle('su-hero-arancione', isVisible)
+          aggiornaMetaThemeColor()
+        })
+      }, { threshold: [0, 0.05, 0.2] })
+      heroObserver.observe(heroEl)
+    }
+  }
+})
+
+onUnmounted(() => {
+  if (heroObserver) {
+    heroObserver.disconnect()
+    heroObserver = null
+  }
+  if (typeof document !== 'undefined') {
+    document.documentElement.classList.remove('su-hero-arancione')
+    aggiornaMetaThemeColor()
+  }
+})
 </script>
 
 <template>
